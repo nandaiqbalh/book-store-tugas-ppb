@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 
+import com.nandaiqbalh.tugaspbb.onboarding.OnBoardingOne;
 import com.nandaiqbalh.tugaspbb.profilekelompok.AboutActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
@@ -22,7 +23,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                Intent intent = new Intent(SplashScreenActivity.this, OnBoardingOne.class);
                 startActivity(intent);
                 finish();
             }
