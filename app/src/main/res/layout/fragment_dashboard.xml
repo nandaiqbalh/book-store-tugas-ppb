@@ -48,21 +48,73 @@
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         app:cardCornerRadius="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-        
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/vp_slider"
             android:layout_width="match_parent"
-            android:layout_height="200dp"/>
-        
+            android:layout_height="200dp" />
+
     </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Latest Books"
+            android:textColor="@color/neutral_dark"
+            android:textSize="14sp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_latest_book"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Top Novels"
+            android:textColor="@color/neutral_dark"
+            android:textSize="14sp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_top_novels"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
