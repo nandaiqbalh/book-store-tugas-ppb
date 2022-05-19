@@ -1,9 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".auth.SignUpActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:layout_marginTop="100dp">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/splashscreen"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Let's Get Started"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/neutral_dark"
+            android:fontFamily="@font/poppins_bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create an account"
+            android:textColor="@color/font_nama"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/bg_input"
+            android:drawableStart="@drawable/ic_username"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Full Name"
+            android:padding="10dp"
+            android:textColor="@color/font_nama"
+            android:textColorHint="@color/neutral_grey"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_input"
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Your Email"
+            android:padding="10dp"
+            android:textColor="@color/font_nama"
+            android:textColorHint="@color/neutral_grey"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_input"
+            android:drawableStart="@drawable/ic_phone"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Phone Number"
+            android:padding="10dp"
+            android:textColor="@color/font_nama"
+            android:textColorHint="@color/neutral_grey"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_input"
+            android:drawableStart="@drawable/ic_password"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textColor="@color/primary_blue"
+            android:textColorHint="@color/neutral_grey"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="16dp"
+            android:text="Sign Up"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_primary"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Already have an account?"
+                android:fontFamily="@font/poppins_light"
+                android:textColor="@color/font_nama"
+                android:textSize="12sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_sign_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:text="Sign In"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="12sp"
+                android:textColor="@color/font_nama"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
