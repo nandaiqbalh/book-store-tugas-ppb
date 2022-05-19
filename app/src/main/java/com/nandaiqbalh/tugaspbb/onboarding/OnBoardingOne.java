@@ -45,7 +45,7 @@ public class OnBoardingOne extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(OnBoardingOne.this, MainActivity.class);
                 startActivity(intent);
-                finish();
+                finishAffinity();
             }
         });
     }

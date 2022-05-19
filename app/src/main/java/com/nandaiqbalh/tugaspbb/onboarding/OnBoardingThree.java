@@ -37,7 +37,7 @@ public class OnBoardingThree extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(OnBoardingThree.this, MainActivity.class);
                 startActivity(intent);
-                finish();
+                finishAffinity();
             }
         });
 
