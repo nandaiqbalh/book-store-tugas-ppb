@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_screen"
+    tools:context=".profilekelompok.AboutActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <TextView
+               android:id="@+id/dev_by"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_centerHorizontal="true"
+               android:layout_marginStart="12dp"
+               android:layout_marginTop="30dp"
+               android:layout_marginEnd="12dp"
+               android:layout_marginBottom="12dp"
+               android:fontFamily="@font/poppins_regular"
+               android:text="Developed by"
+               android:textColor="@color/neutral_dark"
+               android:textSize="14sp"
+               />
+
+           <TextView
+               android:id="@+id/title_view"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_centerHorizontal="true"
+               android:layout_marginStart="12dp"
+               android:layout_marginTop="40dp"
+               android:layout_marginEnd="12dp"
+               android:layout_marginBottom="12dp"
+               android:fontFamily="@font/poppins_bold"
+               android:text="KELOMPOK 12"
+               android:textColor="@color/neutral_dark"
+               android:textSize="30sp"
+               android:textStyle="bold" />
+
+           <LinearLayout
+               android:id="@+id/ln_baris1"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/title_view"
+               android:orientation="horizontal"
+               android:layout_centerHorizontal="true"
+               >
+
+               <androidx.cardview.widget.CardView
+                   android:id="@+id/cardview_sandra"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="fill"
+                   app:cardCornerRadius="8dp"
+                   app:cardElevation="8dp"
+                   app:cardUseCompatPadding="true">
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="8dp"
+                       android:orientation="vertical">
+
+                       <ImageView
+                           android:layout_width="110dp"
+                           android:layout_height="110dp"
+                           android:layout_gravity="center"
+                           android:src="@drawable/sandra" />
+
+                       <TextView
+                           android:layout_width="110dp"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="5dp"
+                           android:layout_marginTop="4dp"
+                           android:fontFamily="@font/poppins_bold"
+                           android:text="Khasandra N."
+                           android:textColor="@color/neutral_dark"
+                           android:textSize="14sp" />
+
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="5dp"
+                           android:fontFamily="@font/poppins_regular"
+                           android:text="21120120140089"
+                           android:textColor="@color/neutral_dark"
+                           android:textSize="12sp" />
+
+                   </LinearLayout>
+               </androidx.cardview.widget.CardView>
+
+               <androidx.cardview.widget.CardView
+                   android:id="@+id/cardview_anam"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="fill"
+                   android:layout_marginStart="15dp"
+                   app:cardCornerRadius="8dp"
+                   app:cardElevation="8dp"
+                   app:cardUseCompatPadding="true">
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="8dp"
+                       android:orientation="vertical">
+
+                       <ImageView
+                           android:layout_width="110dp"
+                           android:layout_height="110dp"
+                           android:layout_gravity="center"
+                           android:src="@drawable/anam" />
+
+                       <TextView
+                           android:layout_width="110dp"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="5dp"
+                           android:layout_marginTop="4dp"
+                           android:fontFamily="@font/poppins_bold"
+                           android:text="M. Rofiul Anam"
+                           android:textColor="@color/neutral_dark"
+                           android:textSize="14sp" />
+
+                       <TextView
+                           android:layout_width="110dp"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="5dp"
+                           android:fontFamily="@font/poppins_regular"
+                           android:text="21120120140135"
+                           android:textColor="@color/neutral_dark"
+                           android:textSize="12sp" />
+
+                   </LinearLayout>
+               </androidx.cardview.widget.CardView>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:id="@+id/ln_baris2"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/ln_baris1"
+               android:orientation="horizontal"
+               android:layout_centerHorizontal="true"
+               >
+
+               <androidx.cardview.widget.CardView
+                   android:id="@+id/cardview_fauzan"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="fill"
+                   app:cardCornerRadius="8dp"
+                   app:cardElevation="8dp"
+                   app:cardUseCompatPadding="true">
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="8dp"
+                       android:orientation="vertical">
+
+                       <ImageView
+                           android:layout_width="110dp"
+                           android:layout_height="110dp"
+                           android:layout_gravity="center"
+                           android:src="@drawable/fauzan" />
+
+                       <TextView
+                           android:layout_width="110dp"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="5dp"
+                           android:layout_marginTop="4dp"
+                           android:fontFamily="@font/poppins_bold"
+                           android:text="Fauzan N."
+                           android:textColor="@color/neutral_dark"
+                           android:textSize="14sp" />
+
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="5dp"
+                           android:fontFamily="@font/poppins_regular"
+                           android:text="21120120140081"
+                           android:textColor="@color/neutral_dark"
+                           android:textSize="12sp" />
+
+                   </LinearLayout>
+
+               </androidx.cardview.widget.CardView>
+
+               <androidx.cardview.widget.CardView
+                   android:id="@+id/cardview_aldo"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="fill"
+                   android:layout_marginStart="15dp"
+                   app:cardCornerRadius="8dp"
+                   app:cardElevation="8dp"
+                   app:cardUseCompatPadding="true">
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="8dp"
+                       android:orientation="vertical">
+
+                       <ImageView
+                           android:layout_width="110dp"
+                           android:layout_height="110dp"
+                           android:layout_gravity="center"
+                           android:src="@drawable/aldo" />
+
+                       <TextView
+                           android:layout_width="110dp"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="5dp"
+                           android:layout_marginTop="4dp"
+                           android:fontFamily="@font/poppins_bold"
+                           android:text="Aldo Serena S."
+                           android:textColor="@color/neutral_dark"
+                           android:textSize="14sp" />
+
+                       <TextView
+                           android:layout_width="110dp"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="5dp"
+                           android:fontFamily="@font/poppins_regular"
+                           android:text="21120120120028"
+                           android:textColor="@color/neutral_dark"
+                           android:textSize="12sp" />
+
+                   </LinearLayout>
+
+               </androidx.cardview.widget.CardView>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:id="@+id/ln_baris3"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/ln_baris2"
+               android:orientation="horizontal"
+               android:layout_centerHorizontal="true"
+               >
+
+               <androidx.cardview.widget.CardView
+                   android:id="@+id/cardview_nanda"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="fill"
+                   android:layout_marginStart="15dp"
+                   app:cardCornerRadius="8dp"
+                   app:cardElevation="8dp"
+                   app:cardUseCompatPadding="true">
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_margin="8dp"
+                       android:orientation="vertical">
+
+                       <ImageView
+                           android:layout_width="110dp"
+                           android:layout_height="110dp"
+                           android:layout_gravity="center"
+                           android:src="@drawable/nanda" />
+
+                       <TextView
+                           android:layout_width="110dp"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="5dp"
+                           android:layout_marginTop="4dp"
+                           android:fontFamily="@font/poppins_bold"
+                           android:text="Nanda Iqbal H."
+                           android:textColor="@color/neutral_dark"
+                           android:textSize="14sp" />
+
+                       <TextView
+                           android:layout_width="110dp"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="5dp"
+                           android:fontFamily="@font/poppins_regular"
+                           android:text="21120120130109"
+                           android:textColor="@color/neutral_dark"
+                           android:textSize="12sp" />
+
+                   </LinearLayout>
+               </androidx.cardview.widget.CardView>
+
+           </LinearLayout>
+
+       </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>
