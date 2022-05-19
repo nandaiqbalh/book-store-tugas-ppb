@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.nandaiqbalh.tugaspbb.MainActivity;
 import com.nandaiqbalh.tugaspbb.R;
 import com.nandaiqbalh.tugaspbb.auth.SignInActivity;
 
@@ -42,8 +43,9 @@ public class OnBoardingOne extends AppCompatActivity {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OnBoardingOne.this, SignInActivity.class);
+                Intent intent = new Intent(OnBoardingOne.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
