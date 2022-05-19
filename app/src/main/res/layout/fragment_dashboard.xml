@@ -4,19 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_dashboard"
     tools:context=".home.DashboardFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ini Dashboard Fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingBottom="10dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="20dp"
-        android:textColor="@color/font_nama"
-        android:fontFamily="@font/poppins_medium"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:layout_width="330dp"
+            android:layout_height="46dp"
+            android:background="@drawable/bg_input"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Search Book"
+            android:maxLines="1"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:padding="10dp"
+            android:textColor="@color/font_nama"
+            android:textColorHint="@color/neutral_grey"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:background="@color/primary_blue"
+            android:paddingStart="15dp"
+            android:paddingEnd="10dp"
+            android:src="@drawable/ic_filter" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
