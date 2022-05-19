@@ -9,13 +9,14 @@
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="66dp"
         android:orientation="horizontal"
         android:paddingLeft="16dp"
-        android:paddingBottom="10dp"
-        android:paddingEnd="16dp"
         android:paddingTop="10dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -28,9 +29,9 @@
             android:drawablePadding="10dp"
             android:fontFamily="@font/poppins_regular"
             android:hint="Search Book"
-            android:maxLines="1"
-            android:inputType="text"
             android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
             android:padding="10dp"
             android:textColor="@color/font_nama"
             android:textColorHint="@color/neutral_grey"
@@ -45,5 +46,23 @@
             android:paddingEnd="10dp"
             android:src="@drawable/ic_filter" />
     </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp_slider"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+        
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

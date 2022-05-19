@@ -3,12 +3,15 @@ package com.nandaiqbalh.tugaspbb.home;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.slider.Slider;
 import com.nandaiqbalh.tugaspbb.R;
+import com.nandaiqbalh.tugaspbb.adapter.SliderAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,10 +60,29 @@ public class DashboardFragment extends Fragment {
         }
     }
 
+
+    ViewPager vpSlider;
+    SliderAdapter sliderAdapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dashboard, container, false);
+        View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
+        // init
+        inisialisasi(view);
+
+        // slider
+        vpSlider.setAdapter(sliderAdapter);
+
+        return view;
+
     }
+
+    private void inisialisasi(View view){
+        vpSlider = view.findViewById(R.id.vp_slider);
+
+        sliderAdapter = new SliderAdapter(getContext());
+    }
+
 }
