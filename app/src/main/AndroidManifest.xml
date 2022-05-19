@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TugasPBB">
         <activity
+            android:name=".home.HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".auth.SignUpActivity"
             android:exported="false" />
         <activity
@@ -23,9 +26,6 @@
             android:exported="false" />
         <activity
             android:name=".onboarding.OnBoardingOne"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".profilekelompok.FauzanDetailActivity"

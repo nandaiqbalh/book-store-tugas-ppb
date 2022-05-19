@@ -8,9 +8,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.nandaiqbalh.tugaspbb.MainActivity;
 import com.nandaiqbalh.tugaspbb.R;
-import com.nandaiqbalh.tugaspbb.auth.SignInActivity;
+import com.nandaiqbalh.tugaspbb.home.HomeActivity;
 
 public class OnBoardingTwo extends AppCompatActivity {
 
@@ -44,7 +43,7 @@ public class OnBoardingTwo extends AppCompatActivity {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OnBoardingTwo.this, MainActivity.class);
+                Intent intent = new Intent(OnBoardingTwo.this, HomeActivity.class);
                 startActivity(intent);
                 finishAffinity();
             }
