@@ -6,13 +6,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nandaiqbalh.tugaspbb.R;
+import com.nandaiqbalh.tugaspbb.rest.ApiConfig;
+import com.nandaiqbalh.tugaspbb.utils.register.RegisterRequest;
+import com.nandaiqbalh.tugaspbb.utils.register.RegisterResponse;
 
 import java.util.regex.Pattern;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -27,6 +36,11 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+
+        // full screen
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
         // init
         inisialisasi();
@@ -56,7 +70,13 @@ public class SignUpActivity extends AppCompatActivity {
 
                 // nanti jika sesuai validasi, akan..
 
-                register();
+                RegisterRequest registerRequest = new RegisterRequest();
+                registerRequest.setName(edtName.getText().toString());
+                registerRequest.setEmail(edtEmail.getText().toString());
+                registerRequest.setPhone(edtPhone.getText().toString());
+                registerRequest.setPassword(edtPassword.getText().toString());
+
+                register(registerRequest);
 
 //                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
 //                startActivity(intent);
@@ -79,7 +99,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-    private void register() {
+    private void register(RegisterRequest registerRequest) {
 
         String emailInput = edtEmail.getText().toString().trim(); // untuk validasi email
         int phoneInput = edtPhone.getText().length(); // untuk validasi nomor telepon
@@ -124,5 +144,33 @@ public class SignUpActivity extends AppCompatActivity {
             edtPassword.requestFocus();
             return;
         }
+
+        Call<RegisterResponse> registerResponseCall = ApiConfig.getService().registerUser(registerRequest);
+        registerResponseCall.enqueue(new Callback<RegisterResponse>() {
+            @Override
+            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                if (response.isSuccessful()){
+
+                    String message = "Successful..";
+                    Toast.makeText(SignUpActivity.this, message, Toast.LENGTH_LONG).show();
+
+//                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+//                    finish();
+//                    startActivity(intent);
+
+
+                } else {
+                    String message = "An error occured during register. Please try again later!";
+                    Toast.makeText(SignUpActivity.this, message, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+
+                String message = t.getLocalizedMessage();
+                Toast.makeText(SignUpActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
