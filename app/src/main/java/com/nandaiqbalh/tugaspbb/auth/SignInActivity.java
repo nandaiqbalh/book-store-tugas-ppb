@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,8 @@ public class SignInActivity extends AppCompatActivity {
 
     EditText edtEmailLogin, edtPasswordLogin;
     TextView tvErrorTextLogin;
+
+    ProgressBar progressBarSignIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,9 @@ public class SignInActivity extends AppCompatActivity {
         edtPasswordLogin = (EditText) findViewById(R.id.edt_password_login);
 
         tvErrorTextLogin = (TextView) findViewById(R.id.tv_errortext_login);
+
+        // progress bar
+        progressBarSignIn = (ProgressBar) findViewById(R.id.pb_login);
         
     }
 
@@ -121,10 +127,15 @@ public class SignInActivity extends AppCompatActivity {
             return;
         }
 
+        progressBarSignIn.setVisibility(View.VISIBLE);
+
         Call<LoginResponse> loginResponseCall = ApiConfig.getService().loginUser(loginRequest);
         loginResponseCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+
+                // set progress bar to gone
+                progressBarSignIn.setVisibility(View.GONE);
 
                 LoginResponse respon = response.body();
 
@@ -147,6 +158,9 @@ public class SignInActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+                // set progress bar to gone
+                progressBarSignIn.setVisibility(View.GONE);
 
                 String message = t.getLocalizedMessage();
                 Toast.makeText(SignInActivity.this, message, Toast.LENGTH_LONG).show();

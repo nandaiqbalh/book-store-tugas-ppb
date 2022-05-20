@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,8 @@ public class SignUpActivity extends AppCompatActivity {
     EditText edtName, edtEmail, edtPhone, edtPassword;
 
     TextView tvErrorText;
+
+    ProgressBar progressBarSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,8 @@ public class SignUpActivity extends AppCompatActivity {
         edtPassword = (EditText) findViewById(R.id.edt_password_register);
 
         tvErrorText = (TextView) findViewById(R.id.tv_errortext);
+
+        progressBarSignUp = (ProgressBar) findViewById(R.id.pb_register);
     }
 
     private void mainButton(){
@@ -78,10 +83,6 @@ public class SignUpActivity extends AppCompatActivity {
 
                 register(registerRequest);
 
-//                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
-//                startActivity(intent);
-//
-//                finishAffinity();
 
             }
         });
@@ -145,17 +146,22 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
+        progressBarSignUp.setVisibility(View.VISIBLE);
+
         Call<RegisterResponse> registerResponseCall = ApiConfig.getService().registerUser(registerRequest);
         registerResponseCall.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+
+                progressBarSignUp.setVisibility(View.GONE);
+
                 if (response.isSuccessful()) {
 
                     RegisterResponse respon = response.body();
 
                     if (respon.getSuccess() == 1) {
                         // berhasil
-                        Toast.makeText(SignUpActivity.this, "Welcome " + respon.getUser().getName() + "! Successfully Register!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignUpActivity.this, "Welcome " + respon.getUser().getName() + "! Congrats, You can sign in now!", Toast.LENGTH_LONG).show();
 
                         Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
                         finish();
@@ -172,6 +178,8 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
+
+                progressBarSignUp.setVisibility(View.GONE);
 
                 String message = t.getLocalizedMessage();
                 Toast.makeText(SignUpActivity.this, message, Toast.LENGTH_LONG).show();

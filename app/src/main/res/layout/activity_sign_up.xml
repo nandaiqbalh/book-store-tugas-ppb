@@ -110,7 +110,7 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="10dp"
-            android:textColor="@color/primary_blue"
+            android:textColor="@color/font_nama"
             android:textColorHint="@color/neutral_grey"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -166,5 +166,12 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pb_register"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 
 </RelativeLayout>
