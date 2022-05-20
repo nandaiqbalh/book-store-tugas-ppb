@@ -7,8 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.nandaiqbalh.tugaspbb.R;
+import com.nandaiqbalh.tugaspbb.auth.SignInActivity;
+import com.nandaiqbalh.tugaspbb.home.HomeActivity;
+import com.nandaiqbalh.tugaspbb.home.ProfileFragment;
 
 public class AboutActivity extends AppCompatActivity {
 

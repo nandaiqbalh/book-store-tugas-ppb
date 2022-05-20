@@ -9,9 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.nandaiqbalh.tugaspbb.R;
+import com.nandaiqbalh.tugaspbb.auth.SignInActivity;
 import com.nandaiqbalh.tugaspbb.helper.SharedPrefs;
+import com.nandaiqbalh.tugaspbb.profilekelompok.AboutActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,6 +67,8 @@ public class ProfileFragment extends Fragment {
     SharedPrefs sharedPrefs;
     Button logoutButton;
 
+    ImageButton ibInfo;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,9 +86,11 @@ public class ProfileFragment extends Fragment {
     }
 
     private void inisialisasi(View view){
-        logoutButton = (Button) view.findViewById(R.id.dummy_button_logout);
+        logoutButton = (Button) view.findViewById(R.id.btn_log_out);
 
         sharedPrefs = new SharedPrefs(getActivity());
+
+        ibInfo = (ImageButton) view.findViewById(R.id.ib_info);
     }
 
     private void mainButton(View view){
@@ -91,6 +99,19 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 sharedPrefs.setStatusLogin(false);
 
+                Intent intent = new Intent(getActivity(), SignInActivity.class);
+                startActivity(intent);
+
+                Toast.makeText(getActivity(), "Sucessfully to sign you out!", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        ibInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AboutActivity.class);
+                startActivity(intent);
             }
         });
     }
