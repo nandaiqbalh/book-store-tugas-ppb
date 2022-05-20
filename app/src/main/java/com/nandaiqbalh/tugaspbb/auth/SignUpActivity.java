@@ -149,21 +149,25 @@ public class SignUpActivity extends AppCompatActivity {
         registerResponseCall.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
 
-                    String message = "Successful..";
-                    Toast.makeText(SignUpActivity.this, message, Toast.LENGTH_LONG).show();
+                    RegisterResponse respon = response.body();
 
-//                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-//                    finish();
-//                    startActivity(intent);
+                    if (respon.getSuccess() == 1) {
+                        // berhasil
+                        Toast.makeText(SignUpActivity.this, "Success : " + respon.getMessage(), Toast.LENGTH_LONG).show();
 
+                    } else {
+                        // gagal
+                        Toast.makeText(SignUpActivity.this, "Error : " + respon.getMessage(), Toast.LENGTH_LONG).show();
+                    }
 
-                } else {
-                    String message = "An error occured during register. Please try again later!";
-                    Toast.makeText(SignUpActivity.this, message, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+                    finish();
+                    startActivity(intent);
                 }
             }
+
 
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
