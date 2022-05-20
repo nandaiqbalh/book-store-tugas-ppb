@@ -42,6 +42,7 @@
             />
 
         <EditText
+            android:id="@+id/edt_email_login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="28dp"
@@ -53,12 +54,14 @@
             android:fontFamily="@font/poppins_regular"
             android:hint="Your Email"
             android:padding="10dp"
-            android:textColor="@color/primary_blue"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/font_nama"
             android:textColorHint="@color/neutral_grey"
             android:textSize="12sp"
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/edt_password_login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
@@ -71,10 +74,21 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="10dp"
-            android:textColor="@color/primary_blue"
+            android:textColor="@color/font_nama"
             android:textColorHint="@color/neutral_grey"
             android:textSize="12sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_errortext_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="12sp"
+            android:textColor="@color/primary_red"/>
 
         <Button
             android:id="@+id/btn_sign_in"
@@ -82,7 +96,6 @@
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginTop="16dp"
             android:text="Sign In"
             android:textSize="14sp"
             android:fontFamily="@font/poppins_bold"
