@@ -37,6 +37,9 @@ public class HomeActivity extends AppCompatActivity {
 
         // button
         mainButton();
+
+        // helper
+        obBoardingStatusHelper();
     }
 
     private void inisialisasi(){
@@ -45,6 +48,11 @@ public class HomeActivity extends AppCompatActivity {
         menu3 = (ImageView) findViewById(R.id.iv_menu3);
 
         sharedPrefs = new SharedPrefs(this);
+    }
+
+    private void obBoardingStatusHelper(){
+
+        sharedPrefs.setValues("onboarding", "1");
     }
 
     private void mainButton(){
