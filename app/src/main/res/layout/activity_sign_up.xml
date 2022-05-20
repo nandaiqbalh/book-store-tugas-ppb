@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Let's Get Started"
+            android:text="Let's Get Started!"
             android:layout_gravity="center"
             android:textSize="16sp"
             android:textColor="@color/font_nama"
@@ -41,6 +41,7 @@
             />
 
         <EditText
+            android:id="@+id/edt_name_register"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
@@ -52,12 +53,14 @@
             android:fontFamily="@font/poppins_regular"
             android:hint="Full Name"
             android:padding="10dp"
+            android:inputType="number"
             android:textColor="@color/font_nama"
             android:textColorHint="@color/neutral_grey"
             android:textSize="12sp"
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/edt_email_register"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
@@ -75,6 +78,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/edt_phone_register"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
@@ -92,6 +96,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/edt_password_register"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
@@ -109,13 +114,23 @@
             android:textSize="12sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/tv_errortext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="12sp"
+            android:textColor="@color/primary_red"/>
+
         <Button
             android:id="@+id/btn_sign_up"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginTop="16dp"
             android:text="Sign Up"
             android:textSize="14sp"
             android:fontFamily="@font/poppins_bold"
