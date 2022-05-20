@@ -155,8 +155,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                     if (respon.getSuccess() == 1) {
                         // berhasil
-                        Toast.makeText(SignUpActivity.this, "Success : " + respon.getMessage(), Toast.LENGTH_LONG).show();
-
+                        Toast.makeText(SignUpActivity.this, "Welcome " + respon.getUser().getName() + "! Successfully Register!", Toast.LENGTH_LONG).show();
                     } else {
                         // gagal
                         Toast.makeText(SignUpActivity.this, "Error : " + respon.getMessage(), Toast.LENGTH_LONG).show();
