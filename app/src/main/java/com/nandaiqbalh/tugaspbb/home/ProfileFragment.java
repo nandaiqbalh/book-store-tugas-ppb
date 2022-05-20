@@ -99,10 +99,12 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 sharedPrefs.setStatusLogin(false);
 
-                Intent intent = new Intent(getActivity(), SignInActivity.class);
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
                 startActivity(intent);
 
                 Toast.makeText(getActivity(), "Sucessfully to sign you out!", Toast.LENGTH_LONG).show();
+
+                getActivity().finishAffinity();
 
             }
         });
