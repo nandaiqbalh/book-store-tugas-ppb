@@ -5,11 +5,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nandaiqbalh.tugaspbb.R;
@@ -69,6 +71,7 @@ public class ProfileFragment extends Fragment {
 
     ImageButton ibInfo;
 
+    TextView tvName, tvEmail, tvPhone, tvAddress;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,6 +83,12 @@ public class ProfileFragment extends Fragment {
 
         // button triggered
         mainButton(view);
+
+        // atur value
+        aturValueText();
+
+        Log.d("Name profile", "Name: " + sharedPrefs.getString(sharedPrefs.getName()));
+        Log.d("Id profile", "Id: " + sharedPrefs.getInt(sharedPrefs.getId()));
 
         return view;
 
@@ -93,6 +102,42 @@ public class ProfileFragment extends Fragment {
         ibInfo = (ImageButton) view.findViewById(R.id.ib_info);
 
         btnChangeProfile = (Button) view.findViewById(R.id.btn_change_profile);
+
+        tvName = (TextView) view.findViewById(R.id.tv_name_profile);
+        tvEmail = (TextView) view.findViewById(R.id.tv_email_profile);
+        tvPhone = (TextView) view.findViewById(R.id.tv_phone_profile);
+        tvAddress = (TextView) view.findViewById(R.id.tv_address_profile);
+    }
+
+    private void aturValueText(){
+
+        // name
+        if (sharedPrefs.getString(sharedPrefs.getName()) == ""){
+            tvName.setText("Not set.");
+        } else {
+            tvName.setText(sharedPrefs.getString(sharedPrefs.getName()));
+        }
+
+        // email
+        if (sharedPrefs.getString(sharedPrefs.getEmail()) == ""){
+            tvEmail.setText("Not set.");
+        } else {
+            tvEmail.setText(sharedPrefs.getString(sharedPrefs.getEmail()));
+        }
+
+        // phone
+        if (sharedPrefs.getString(sharedPrefs.getPhone()) == ""){
+            tvPhone.setText("Not set.");
+        } else {
+            tvPhone.setText(sharedPrefs.getString(sharedPrefs.getPhone()));
+        }
+
+        // address
+        if (sharedPrefs.getString(sharedPrefs.getAddress()) == ""){
+            tvAddress.setText("Not set.");
+        } else {
+            tvAddress.setText(sharedPrefs.getString(sharedPrefs.getAddress()));
+        }
     }
 
     private void mainButton(View view){

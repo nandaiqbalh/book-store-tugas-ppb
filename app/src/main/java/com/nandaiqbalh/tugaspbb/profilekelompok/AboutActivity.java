@@ -5,6 +5,7 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import android.widget.ImageButton;
 
 import com.nandaiqbalh.tugaspbb.R;
 import com.nandaiqbalh.tugaspbb.auth.SignInActivity;
+import com.nandaiqbalh.tugaspbb.helper.SharedPrefs;
 import com.nandaiqbalh.tugaspbb.home.HomeActivity;
 import com.nandaiqbalh.tugaspbb.home.ProfileFragment;
 
@@ -32,7 +34,6 @@ public class AboutActivity extends AppCompatActivity {
 
         // panggil lagi
         mainButton();
-
     }
 
     // buat fungsinya disini, biar di onCreate, kita tinggal manggil2 doang, jadinya codenya rapi

@@ -1,20 +1,19 @@
 package com.nandaiqbalh.tugaspbb.model;
 
 public class User {
-    private int userID = 0;
+    private int id;
     private String email;
     private String name;
     private String phone;
     private String gender;
     private String address;
 
-
-    public int getUserID() {
-        return userID;
+    public int getId() {
+        return id;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {

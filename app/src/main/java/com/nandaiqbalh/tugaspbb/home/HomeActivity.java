@@ -6,19 +6,32 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.nandaiqbalh.tugaspbb.R;
 import com.nandaiqbalh.tugaspbb.auth.SignInActivity;
 import com.nandaiqbalh.tugaspbb.helper.SharedPrefs;
+import com.nandaiqbalh.tugaspbb.rest.ApiConfig;
+import com.nandaiqbalh.tugaspbb.utils.login.LoginRequest;
+import com.nandaiqbalh.tugaspbb.utils.login.LoginResponse;
+import com.nandaiqbalh.tugaspbb.utils.userprofile.UserProfileRequest;
+import com.nandaiqbalh.tugaspbb.utils.userprofile.UserProfileResponse;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
 
     ImageView menu1, menu2, menu3;
 
     SharedPrefs sharedPrefs;
+
+    UserProfileRequest userProfileRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +53,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // helper
         obBoardingStatusHelper();
+
     }
 
     private void inisialisasi(){
@@ -48,6 +62,8 @@ public class HomeActivity extends AppCompatActivity {
         menu3 = (ImageView) findViewById(R.id.iv_menu3);
 
         sharedPrefs = new SharedPrefs(this);
+
+        userProfileRequest = new UserProfileRequest();
     }
 
     private void obBoardingStatusHelper(){

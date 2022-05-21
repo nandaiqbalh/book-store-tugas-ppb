@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
@@ -19,6 +20,7 @@ import com.nandaiqbalh.tugaspbb.home.HomeActivity;
 import com.nandaiqbalh.tugaspbb.rest.ApiConfig;
 import com.nandaiqbalh.tugaspbb.utils.login.LoginRequest;
 import com.nandaiqbalh.tugaspbb.utils.login.LoginResponse;
+import com.nandaiqbalh.tugaspbb.utils.userprofile.UserProfileRequest;
 
 import java.util.regex.Pattern;
 
@@ -147,9 +149,17 @@ public class SignInActivity extends AppCompatActivity {
                     finish();
                     startActivity(intent);
 
+                    // set string value
+                    sharedPrefs.setString(sharedPrefs.getName(), respon.getUser().getName());
+                    sharedPrefs.setString(sharedPrefs.getEmail(), respon.getUser().getEmail());
+                    sharedPrefs.setString(sharedPrefs.getPhone(), respon.getUser().getPhone());
+                    sharedPrefs.setString(sharedPrefs.getAddress(), respon.getUser().getAddress());
+
+                    sharedPrefs.setInt(sharedPrefs.getId(),respon.getUser().getId());
+
+
                     // set status login
                     sharedPrefs.setStatusLogin(true);
-
                 } else {
                     // gagal
                     Toast.makeText(SignInActivity.this, "Error : " + respon.getMessage(), Toast.LENGTH_LONG).show();
