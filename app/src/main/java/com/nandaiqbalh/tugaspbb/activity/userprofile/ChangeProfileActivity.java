@@ -4,17 +4,31 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.nandaiqbalh.tugaspbb.R;
 import com.nandaiqbalh.tugaspbb.auth.SignInActivity;
+import com.nandaiqbalh.tugaspbb.auth.SignUpActivity;
 import com.nandaiqbalh.tugaspbb.helper.SharedPrefs;
 import com.nandaiqbalh.tugaspbb.home.HomeActivity;
 import com.nandaiqbalh.tugaspbb.model.User;
+import com.nandaiqbalh.tugaspbb.rest.ApiConfig;
+import com.nandaiqbalh.tugaspbb.utils.register.RegisterRequest;
+import com.nandaiqbalh.tugaspbb.utils.register.RegisterResponse;
+import com.nandaiqbalh.tugaspbb.utils.userprofile.UserProfileRequest;
+import com.nandaiqbalh.tugaspbb.utils.userprofile.UserProfileResponse;
+
+import java.util.regex.Pattern;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChangeProfileActivity extends AppCompatActivity {
 
@@ -26,6 +40,8 @@ public class ChangeProfileActivity extends AppCompatActivity {
     EditText edtNameChange, edtEmailChange, edtPhoneChange, edtAddressChange;
 
     SharedPrefs sharedPrefs;
+
+    UserProfileRequest userProfileRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +59,10 @@ public class ChangeProfileActivity extends AppCompatActivity {
 
         // value form edit
         aturValueForm();
+
+        // get user profile
+        userProfileRequest.setId(sharedPrefs.getInt(sharedPrefs.getId()));
+        getUserProfile(userProfileRequest);
     }
 
     private void mainButton() {
@@ -81,6 +101,7 @@ public class ChangeProfileActivity extends AppCompatActivity {
 
         sharedPrefs = new SharedPrefs(this);
 
+        userProfileRequest = new UserProfileRequest();
     }
 
     private void aturValueForm(){
@@ -105,6 +126,50 @@ public class ChangeProfileActivity extends AppCompatActivity {
         } else {
             edtAddressChange.setText(user.getAddress());
         }
+    }
+
+
+    private void getUserProfile(UserProfileRequest userProfileRequest) {
+
+        if (sharedPrefs.getUser() == null){
+            Intent intent = new Intent(ChangeProfileActivity.this, SignInActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            return;
+        }
+
+        Call<UserProfileResponse> userProfileResponseCall = ApiConfig.getService().getProfile(userProfileRequest);
+        userProfileResponseCall.enqueue(new Callback<UserProfileResponse>() {
+
+            @Override
+            public void onResponse(Call<UserProfileResponse> call, Response<UserProfileResponse> response) {
+
+                if (response.isSuccessful()) {
+
+                    UserProfileResponse respon = response.body();
+
+                    if (respon.getSuccess() == 1) {
+                        // berhasil
+
+                    } else {
+                        // gagal
+                        Toast.makeText(ChangeProfileActivity.this, "Error : " + respon.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<UserProfileResponse> call, Throwable t) {
+
+                String message = t.getLocalizedMessage();
+                Toast.makeText(ChangeProfileActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+
+
+        });
     }
 
 
