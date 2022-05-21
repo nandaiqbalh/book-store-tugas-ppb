@@ -16,7 +16,9 @@ import android.widget.Toast;
 
 import com.nandaiqbalh.tugaspbb.R;
 import com.nandaiqbalh.tugaspbb.activity.userprofile.ChangeProfileActivity;
+import com.nandaiqbalh.tugaspbb.auth.SignInActivity;
 import com.nandaiqbalh.tugaspbb.helper.SharedPrefs;
+import com.nandaiqbalh.tugaspbb.model.User;
 import com.nandaiqbalh.tugaspbb.profilekelompok.AboutActivity;
 
 /**
@@ -87,8 +89,6 @@ public class ProfileFragment extends Fragment {
         // atur value
         aturValueText();
 
-        Log.d("Name profile", "Name: " + sharedPrefs.getString(sharedPrefs.getName()));
-        Log.d("Id profile", "Id: " + sharedPrefs.getInt(sharedPrefs.getId()));
 
         return view;
 
@@ -111,32 +111,42 @@ public class ProfileFragment extends Fragment {
 
     private void aturValueText(){
 
+        if (sharedPrefs.getUser() == null){
+            Intent intent = new Intent(getActivity(), SignInActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            return;
+        }
+
+        User user = sharedPrefs.getUser();
+
         // name
-        if (sharedPrefs.getString(sharedPrefs.getName()) == ""){
+        if (user.getName().equals("")){
             tvName.setText("Not set.");
         } else {
-            tvName.setText(sharedPrefs.getString(sharedPrefs.getName()));
+            tvName.setText(user.getName());
         }
 
         // email
-        if (sharedPrefs.getString(sharedPrefs.getEmail()) == ""){
+        if (user.getEmail().equals("")){
             tvEmail.setText("Not set.");
         } else {
-            tvEmail.setText(sharedPrefs.getString(sharedPrefs.getEmail()));
+            tvEmail.setText(user.getEmail());
         }
 
         // phone
-        if (sharedPrefs.getString(sharedPrefs.getPhone()) == ""){
+        if (user.getPhone() == ""){
             tvPhone.setText("Not set.");
         } else {
-            tvPhone.setText(sharedPrefs.getString(sharedPrefs.getPhone()));
+            tvPhone.setText(user.getPhone());
         }
 
         // address
-        if (sharedPrefs.getString(sharedPrefs.getAddress()) == ""){
+        if (user.getAddress() == null){
             tvAddress.setText("Not set.");
         } else {
-            tvAddress.setText(sharedPrefs.getString(sharedPrefs.getAddress()));
+            tvAddress.setText(user.getAddress());
         }
     }
 

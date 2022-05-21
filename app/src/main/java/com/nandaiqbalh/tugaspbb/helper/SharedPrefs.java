@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
+import com.nandaiqbalh.tugaspbb.model.User;
+
 public class SharedPrefs {
 
     private final String USER_PREF = "USER_PREF";
@@ -17,6 +20,10 @@ public class SharedPrefs {
     private String email = "email";
     private String phone = "phone";
     private String address = "address";
+
+    private String user = "user";
+
+    Gson gson = new Gson();
 
 
     public SharedPrefs(Activity activity) {
@@ -42,6 +49,24 @@ public class SharedPrefs {
         return sharedPref.getBoolean(login, false);
     }
 
+
+    // Setter bertipe User untuk memanggil langsung semua field di dalam user, agar ga manggil satu per satu
+    public void setUser(User value) {
+        String data = gson.toJson(value, User.class); // ubah data dari bentuk Object Class ke dalam bentuk String
+        sharedPref.edit().putString(String.valueOf(user), data).apply();
+    }
+
+    // Getter bertipe User untuk memanggil langsung semua field di dalam user, agar ga manggil satu per satu
+    public User getUser(){
+        String data;
+        data = sharedPref.getString(String.valueOf(this.user), null); // ubah data dari bentuk String ke dalam bentuk Object Class
+
+        if (data != null){
+            return gson.fromJson(data, User.class);
+        } else {
+            return null;
+        }
+    }
 
     public void setString(String key, String value) {
         sharedPref.edit().putString(key, value).apply();

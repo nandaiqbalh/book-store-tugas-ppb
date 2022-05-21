@@ -149,11 +149,14 @@ public class SignInActivity extends AppCompatActivity {
                     finish();
                     startActivity(intent);
 
-                    // set string value
-                    sharedPrefs.setString(sharedPrefs.getName(), respon.getUser().getName());
-                    sharedPrefs.setString(sharedPrefs.getEmail(), respon.getUser().getEmail());
-                    sharedPrefs.setString(sharedPrefs.getPhone(), respon.getUser().getPhone());
-                    sharedPrefs.setString(sharedPrefs.getAddress(), respon.getUser().getAddress());
+                    // set value user dengan method setUser
+                    sharedPrefs.setUser(respon.getUser()); // manggil kembalian field user secara langsung
+
+//                    // set string value
+//                    sharedPrefs.setString(sharedPrefs.getName(), respon.getUser().getName());
+//                    sharedPrefs.setString(sharedPrefs.getEmail(), respon.getUser().getEmail());
+//                    sharedPrefs.setString(sharedPrefs.getPhone(), respon.getUser().getPhone());
+//                    sharedPrefs.setString(sharedPrefs.getAddress(), respon.getUser().getAddress());
 
                     sharedPrefs.setInt(sharedPrefs.getId(),respon.getUser().getId());
 
