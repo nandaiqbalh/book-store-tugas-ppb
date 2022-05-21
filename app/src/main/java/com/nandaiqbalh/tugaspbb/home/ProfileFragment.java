@@ -13,7 +13,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.nandaiqbalh.tugaspbb.R;
-import com.nandaiqbalh.tugaspbb.auth.SignInActivity;
+import com.nandaiqbalh.tugaspbb.activity.userprofile.ChangeProfileActivity;
 import com.nandaiqbalh.tugaspbb.helper.SharedPrefs;
 import com.nandaiqbalh.tugaspbb.profilekelompok.AboutActivity;
 
@@ -65,7 +65,7 @@ public class ProfileFragment extends Fragment {
     }
 
     SharedPrefs sharedPrefs;
-    Button logoutButton;
+    Button logoutButton, btnChangeProfile;
 
     ImageButton ibInfo;
 
@@ -91,6 +91,8 @@ public class ProfileFragment extends Fragment {
         sharedPrefs = new SharedPrefs(getActivity());
 
         ibInfo = (ImageButton) view.findViewById(R.id.ib_info);
+
+        btnChangeProfile = (Button) view.findViewById(R.id.btn_change_profile);
     }
 
     private void mainButton(View view){
@@ -113,6 +115,14 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), AboutActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnChangeProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ChangeProfileActivity.class);
                 startActivity(intent);
             }
         });
