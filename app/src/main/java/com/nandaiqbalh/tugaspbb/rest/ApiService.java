@@ -20,4 +20,7 @@ public interface ApiService {
 
     @POST("user/get-profile")
     Call<UserProfileResponse> getProfile(@Body UserProfileRequest userProfileRequest);
+
+    @POST("user/update-profile")
+    Call<UserProfileResponse> updateUserProfile(@Body UserProfileRequest userProfileRequest);
 }

@@ -22,6 +22,7 @@ public class SharedPrefs {
     private String address = "address";
 
     private String user = "user";
+    private String userUpdated = "userUpdated";
 
     Gson gson = new Gson();
 
@@ -60,6 +61,24 @@ public class SharedPrefs {
     public User getUser(){
         String data;
         data = sharedPref.getString(String.valueOf(this.user), null); // ubah data dari bentuk String ke dalam bentuk Object Class
+
+        if (data != null){
+            return gson.fromJson(data, User.class);
+        } else {
+            return null;
+        }
+    }
+
+    // Setter bertipe User untuk memanggil langsung semua field di dalam user, agar ga manggil satu per satu
+    public void setUserUpdated(User value) {
+        String data = gson.toJson(value, User.class); // ubah data dari bentuk Object Class ke dalam bentuk String
+        sharedPref.edit().putString(String.valueOf(userUpdated), data).apply();
+    }
+
+    // Getter bertipe User untuk memanggil langsung semua field di dalam user, agar ga manggil satu per satu
+    public User getUserUpdated(){
+        String data;
+        data = sharedPref.getString(String.valueOf(this.userUpdated), null); // ubah data dari bentuk String ke dalam bentuk Object Class
 
         if (data != null){
             return gson.fromJson(data, User.class);

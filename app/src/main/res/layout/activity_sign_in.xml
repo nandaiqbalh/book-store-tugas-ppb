@@ -11,50 +11,49 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:orientation="vertical"
-        android:layout_marginTop="120dp">
+        android:layout_marginTop="120dp"
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/splashscreen"
             android:layout_gravity="center"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textAlignment="center"
-            android:text="Welcome to\nDua Belas Book Store!"
-            android:layout_gravity="center"
-            android:textSize="16sp"
-            android:textColor="@color/font_nama"
-            android:fontFamily="@font/poppins_bold"/>
+            android:src="@drawable/splashscreen" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Welcome to\nDua Belas Book Store!"
+            android:textAlignment="center"
+            android:textColor="@color/font_nama"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_regular"
             android:text="Sign in to continue"
             android:textColor="@color/font_nama"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_gravity="center"
-            android:textSize="12sp"
-            />
+            android:textSize="12sp" />
 
         <EditText
             android:id="@+id/edt_email_login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="28dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="28dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/bg_input"
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="10dp"
             android:fontFamily="@font/poppins_regular"
             android:hint="Your Email"
-            android:padding="10dp"
             android:inputType="textEmailAddress"
+            android:padding="10dp"
             android:textColor="@color/font_nama"
             android:textColorHint="@color/neutral_grey"
             android:textSize="12sp"
@@ -64,8 +63,8 @@
             android:id="@+id/edt_password_login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/bg_input"
             android:drawableStart="@drawable/ic_password"
@@ -87,8 +86,8 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/poppins_bold"
-            android:textSize="12sp"
-            android:textColor="@color/primary_red"/>
+            android:textColor="@color/primary_red"
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/btn_sign_in"
@@ -96,21 +95,21 @@
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:text="Sign In"
-            android:textSize="14sp"
+            android:background="@drawable/shape_btn_primary"
             android:fontFamily="@font/poppins_bold"
+            android:text="Sign In"
             android:textColor="@color/white"
-            android:background="@drawable/shape_btn_primary"/>
+            android:textSize="14sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Forgot Password?"
-            android:textSize="12sp"
-            android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/font_nama"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Forgot Password?"
+            android:textColor="@color/font_nama"
+            android:textSize="12sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -120,21 +119,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Don't have any account?"
                 android:fontFamily="@font/poppins_light"
+                android:text="Don't have any account?"
                 android:textColor="@color/font_nama"
-                android:textSize="12sp"
-                />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tv_btn_signup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
-                android:text="Sign Up"
                 android:fontFamily="@font/poppins_bold"
-                android:textSize="12sp"
-                android:textColor="@color/font_nama"/>
+                android:text="Sign Up"
+                android:textColor="@color/font_nama"
+                android:textSize="12sp" />
 
         </LinearLayout>
 

@@ -74,6 +74,9 @@ public class ProfileFragment extends Fragment {
     ImageButton ibInfo;
 
     TextView tvName, tvEmail, tvPhone, tvAddress;
+
+    User user, userUpdated;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -107,6 +110,10 @@ public class ProfileFragment extends Fragment {
         tvEmail = (TextView) view.findViewById(R.id.tv_email_profile);
         tvPhone = (TextView) view.findViewById(R.id.tv_phone_profile);
         tvAddress = (TextView) view.findViewById(R.id.tv_address_profile);
+
+        user = sharedPrefs.getUser();
+        userUpdated = sharedPrefs.getUserUpdated();
+
     }
 
     private void aturValueText(){
@@ -119,35 +126,68 @@ public class ProfileFragment extends Fragment {
             return;
         }
 
-        User user = sharedPrefs.getUser();
+        if (userUpdated != null){
+            // name
+            if (userUpdated.getName().equals("")){
+                tvName.setText("Not set.");
+            } else {
+                tvName.setText(userUpdated.getName());
+            }
 
-        // name
-        if (user.getName().equals("")){
-            tvName.setText("Not set.");
+            // email
+            if (userUpdated.getEmail().equals("")){
+                tvEmail.setText("Not set.");
+            } else {
+                tvEmail.setText(userUpdated.getEmail());
+            }
+
+            // phone
+            if (userUpdated.getPhone() == ""){
+                tvPhone.setText("Not set.");
+            } else {
+                tvPhone.setText(userUpdated.getPhone());
+            }
+
+            // address
+            if (userUpdated.getAddress() == null){
+                tvAddress.setText("Not set.");
+            } else {
+                tvAddress.setText(userUpdated.getAddress());
+            }
+
+            return;
         } else {
-            tvName.setText(user.getName());
+
+            // hanya akan dieksekusi apabila blm update profile
+            // name
+            if (user.getName().equals("")){
+                tvName.setText("Not set.");
+            } else {
+                tvName.setText(user.getName());
+            }
+
+            // email
+            if (user.getEmail().equals("")){
+                tvEmail.setText("Not set.");
+            } else {
+                tvEmail.setText(user.getEmail());
+            }
+
+            // phone
+            if (user.getPhone() == ""){
+                tvPhone.setText("Not set.");
+            } else {
+                tvPhone.setText(user.getPhone());
+            }
+
+            // address
+            if (user.getAddress() == null){
+                tvAddress.setText("Not set.");
+            } else {
+                tvAddress.setText(user.getAddress());
+            }
         }
 
-        // email
-        if (user.getEmail().equals("")){
-            tvEmail.setText("Not set.");
-        } else {
-            tvEmail.setText(user.getEmail());
-        }
-
-        // phone
-        if (user.getPhone() == ""){
-            tvPhone.setText("Not set.");
-        } else {
-            tvPhone.setText(user.getPhone());
-        }
-
-        // address
-        if (user.getAddress() == null){
-            tvAddress.setText("Not set.");
-        } else {
-            tvAddress.setText(user.getAddress());
-        }
     }
 
     private void mainButton(View view){
