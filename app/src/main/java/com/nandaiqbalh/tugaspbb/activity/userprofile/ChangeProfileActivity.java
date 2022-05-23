@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,8 @@ public class ChangeProfileActivity extends AppCompatActivity {
     UserProfileRequest userProfileRequest;
 
     User user, userUpdated;
+
+    ProgressBar pbChangeProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +110,8 @@ public class ChangeProfileActivity extends AppCompatActivity {
         userUpdated = sharedPrefs.getUserUpdated();
 
         userProfileRequest = new UserProfileRequest();
+
+        pbChangeProfile = (ProgressBar) findViewById(R.id.pb_change_profile);
     }
 
     private void aturValueForm(){
@@ -155,6 +160,7 @@ public class ChangeProfileActivity extends AppCompatActivity {
             startActivity(intent);
             return;
         }
+
 
         Call<UserProfileResponse> userProfileResponseCall = ApiConfig.getService().getProfile(userProfileRequest);
         userProfileResponseCall.enqueue(new Callback<UserProfileResponse>() {
@@ -253,12 +259,14 @@ public class ChangeProfileActivity extends AppCompatActivity {
             return;
         }
 
+        pbChangeProfile.setVisibility(View.VISIBLE);
+
         Call<UserProfileResponse> userUpdateProfileCall = ApiConfig.getService().updateUserProfile(userProfileRequest);
         userUpdateProfileCall.enqueue(new Callback<UserProfileResponse>() {
 
             @Override
             public void onResponse(Call<UserProfileResponse> call, Response<UserProfileResponse> response) {
-
+                pbChangeProfile.setVisibility(View.GONE);
                 if (response.isSuccessful()) {
 
                     UserProfileResponse respon = response.body();
@@ -281,7 +289,7 @@ public class ChangeProfileActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserProfileResponse> call, Throwable t) {
-
+                pbChangeProfile.setVisibility(View.GONE);
                 String message = t.getLocalizedMessage();
                 Toast.makeText(ChangeProfileActivity.this, message, Toast.LENGTH_LONG).show();
             }
