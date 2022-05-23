@@ -278,7 +278,6 @@ public class ChangeProfileActivity extends AppCompatActivity {
                         Toast.makeText(ChangeProfileActivity.this, "Your profile has been updated!", Toast.LENGTH_LONG).show();
 
                         Intent intent = new Intent(ChangeProfileActivity.this, HomeActivity.class);
-                        finish();
                         startActivity(intent);
 
                     } else {

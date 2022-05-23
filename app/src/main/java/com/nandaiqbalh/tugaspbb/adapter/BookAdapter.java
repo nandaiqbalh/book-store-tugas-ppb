@@ -1,5 +1,6 @@
 package com.nandaiqbalh.tugaspbb.adapter;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +12,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.nandaiqbalh.tugaspbb.R;
 import com.nandaiqbalh.tugaspbb.model.Book;
+import com.squareup.picasso.Picasso;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.myViewHolder> {
 
+    Activity activity;
     ArrayList<Book> dataHolder;
 
-    public BookAdapter(ArrayList<Book> dataHolder) {
+    public BookAdapter(Activity activity, ArrayList<Book> dataHolder) {
+        this.activity = activity;
         this.dataHolder = dataHolder;
     }
 
@@ -33,10 +39,16 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.myViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
 
-        holder.gambarBuku.setImageResource(dataHolder.get(position).getGambarBuku());
-        holder.judulBuku.setText(dataHolder.get(position).getJudulBuku());
-        holder.penulisBuku.setText(dataHolder.get(position).getPenulisBuku());
-        holder.hargaBuku.setText(dataHolder.get(position).getHargaBuku());
+        holder.judulBuku.setText(dataHolder.get(position).getBook_name());
+        holder.penulisBuku.setText(dataHolder.get(position).getBook_author());
+        holder.hargaBuku.setText(NumberFormat.getCurrencyInstance(new Locale("in", "ID")).format(Integer.valueOf(dataHolder.get(position).getSelling_price())));
+
+        String imageURL = "http://192.168.160.114/aksara-book-store/public/" + dataHolder.get(position).getBook_image();
+        Picasso.get()
+                .load(imageURL)
+                .placeholder(R.drawable.loading)
+                .error(R.drawable.loading)
+                .into(holder.gambarBuku);
     }
 
     @Override

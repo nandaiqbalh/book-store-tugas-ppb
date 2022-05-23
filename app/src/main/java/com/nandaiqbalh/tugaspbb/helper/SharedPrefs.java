@@ -24,6 +24,7 @@ public class SharedPrefs {
     private String user = "user";
     private String userUpdated = "userUpdated";
 
+
     Gson gson = new Gson();
 
 
