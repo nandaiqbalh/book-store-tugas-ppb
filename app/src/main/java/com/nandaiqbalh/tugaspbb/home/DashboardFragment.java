@@ -91,10 +91,10 @@ public class DashboardFragment extends Fragment {
         // slider
         vpSlider.setAdapter(sliderAdapter);
 
-//        setLatestBook(view);
+        setOfflineLatestBook();
 
         // latest book
-        getLatestBook();
+//        getLatestBook();
 
 //        Log.d("Buku", "Buku: " + latestBooksArrayList);
 
@@ -113,67 +113,68 @@ public class DashboardFragment extends Fragment {
 
     // data offline
     // ini untuk menampilkan data offline
-//    private void setLatestBook(View view){
-//        // produk recycler view
-//        rvLatestBook = view.findViewById(R.id.rv_latest_book);
-//        rvLatestBook.setLayoutManager(new LinearLayoutManager(getContext()));
+    private void setOfflineLatestBook(){
+        // produk recycler view
+
+        rvLatestBook.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // MENAMBAHKAN BUKU SECARA OFFLINE DARI INTERNAL PROJECT
+        // menambahkan produk ke holder -> Featured Product
+        dataHolder = new ArrayList<>();
+        Book produk1 = new Book("Geez & Ann #1", "Rintik Sedu", "RS-01", "200", "146", "Bahasa Indonesia",  "99000" , "5000", R.drawable.buku_geez1);
+        dataHolder.add(produk1);
+        Book produk2 = new Book("Konspirasi Alam Semesta", "Fiersa Besari", "FB-01", "200", "166", "Bahasa Indonesia",  "75000" , "5000", R.drawable.buku_kolase);
+        dataHolder.add(produk2);
+        Book produk3 = new Book("Bumi Manusia", "Pramudya Ananta Toer", "PAT-01", "200", "244", "Bahasa Indonesia",  "144000" , "5000", R.drawable.buku_bumi_manusia);
+        dataHolder.add(produk3);
+        Book produk4 = new Book("Geez & Ann #2", "Rintik Sedu", "RS-02", "200", "146", "Bahasa Indonesia",  "99000" , "5000", R.drawable.buku_geez2);
+        dataHolder.add(produk4);
+        Book produk5 = new Book("Geez & Ann #3", "Rintik Sedu", "RS-01", "200", "146", "Bahasa Indonesia",  "99000" , "5000", R.drawable.buku_geez3);
+        dataHolder.add(produk5);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        rvLatestBook.setLayoutManager(linearLayoutManager);
+        rvLatestBook.setAdapter(new BookAdapter(requireActivity(), dataHolder));
+    }
+
+//     // get book with API
+//    private ArrayList<Book> latestBooksArrayList = new ArrayList<>();
 //
-//        // MENAMBAHKAN BUKU SECARA OFFLINE DARI INTERNAL PROJECT
-//        // menambahkan produk ke holder -> Featured Product
-//        dataHolder = new ArrayList<>();
-//        Book produk1 = new Book("Geez & Ann #1", "Rintik Sedu", "Rp. 99.000" ,R.drawable.buku_geez1);
-//        dataHolder.add(produk1);
-//        Book produk2 = new Book("Konspirasi Alam Semesta", "Fiersa Besari", "Rp. 75.000" ,R.drawable.buku_kolase);
-//        dataHolder.add(produk2);
-//        Book produk3 = new Book("Bumi Manusia", "Pramudya Ananta Toer", "Rp. 124.000" ,R.drawable.buku_bumi_manusia);
-//        dataHolder.add(produk3);
-//        Book produk4 = new Book("Geez & Ann #2", "Rintik Sedu", "Rp. 99.000" ,R.drawable.buku_geez2);
-//        dataHolder.add(produk4);
-//        Book produk5 = new Book("Geez & Ann #3", "Rintik Sedu", "Rp. 99.000" ,R.drawable.buku_geez3);
-//        dataHolder.add(produk5);
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-//        linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
-//        rvLatestBook.setLayoutManager(linearLayoutManager);
+//    private void getLatestBook() {
+//        Call<BookResponse> latestBookResponseCall = ApiConfig.getService().latestBooks();
+//        latestBookResponseCall.enqueue(new Callback<BookResponse>() {
+//            @Override
+//            public void onResponse(Call<BookResponse> call, Response<BookResponse> response) {
 //
-//        rvLatestBook.setAdapter(new BookAdapter(requireActivity(), dataHolder));
+//                BookResponse respon = response.body();
+//
+//                Log.d("Buku", "Buku: " + respon.getBooks());
+//
+//                if (respon.getSuccess() == 1){
+//                    latestBooksArrayList = respon.getBooks();
+//
+//                    Log.d("Buku", "Buku: " + respon.getBooks());
+//
+//                    displayBook();
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<BookResponse> call, Throwable t) {
+//
+//            }
+//        });
 //    }
-
-    private ArrayList<Book> latestBooksArrayList = new ArrayList<>();
-
-    private void getLatestBook() {
-        Call<BookResponse> latestBookResponseCall = ApiConfig.getService().latestBooks();
-        latestBookResponseCall.enqueue(new Callback<BookResponse>() {
-            @Override
-            public void onResponse(Call<BookResponse> call, Response<BookResponse> response) {
-
-                BookResponse respon = response.body();
-
-                Log.d("Buku", "Buku: " + respon.getBooks());
-
-                if (respon.getSuccess() == 1){
-                    latestBooksArrayList = respon.getBooks();
-
-                    Log.d("Buku", "Buku: " + respon.getBooks());
-
-                    displayBook();
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<BookResponse> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void displayBook(){
-
-        // latestBooks
-        LinearLayoutManager latestBookLinearLayourManager = new LinearLayoutManager(getActivity());
-        latestBookLinearLayourManager.setOrientation(RecyclerView.HORIZONTAL);
-        rvLatestBook.setLayoutManager(latestBookLinearLayourManager);
-        rvLatestBook.setAdapter(new BookAdapter(requireActivity(), latestBooksArrayList));
-    }
+//
+//    private void displayBook(){
+//
+//        // latestBooks
+//        LinearLayoutManager latestBookLinearLayourManager = new LinearLayoutManager(getActivity());
+//        latestBookLinearLayourManager.setOrientation(RecyclerView.HORIZONTAL);
+//        rvLatestBook.setLayoutManager(latestBookLinearLayourManager);
+//        rvLatestBook.setAdapter(new BookAdapter(requireActivity(), latestBooksArrayList));
+//    }
 
 }

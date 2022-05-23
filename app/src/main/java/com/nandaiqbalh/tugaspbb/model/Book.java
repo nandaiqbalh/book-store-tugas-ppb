@@ -20,10 +20,15 @@ public class Book implements Serializable {
     private int special_deal;
     private int status;
 
-    public Book(String book_name, String book_author, String selling_price, int book_image) {
+    public Book(String book_name, String book_author, String book_code, String book_quantity, String book_page, String book_language, String selling_price, String discount_price, int book_image) {
         this.book_name = book_name;
         this.book_author = book_author;
+        this.book_code = book_code;
+        this.book_quantity = book_quantity;
+        this.book_page = book_page;
+        this.book_language = book_language;
         this.selling_price = selling_price;
+        this.discount_price = discount_price;
         this.book_image = book_image;
     }
 

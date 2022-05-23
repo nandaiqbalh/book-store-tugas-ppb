@@ -43,7 +43,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.myViewHolder> 
         holder.penulisBuku.setText(dataHolder.get(position).getBook_author());
         holder.hargaBuku.setText(NumberFormat.getCurrencyInstance(new Locale("in", "ID")).format(Integer.valueOf(dataHolder.get(position).getSelling_price())));
 
-        String imageURL = "http://192.168.160.114/aksara-book-store/public/" + dataHolder.get(position).getBook_image();
+        int imageURL = dataHolder.get(position).getBook_image();
         Picasso.get()
                 .load(imageURL)
                 .placeholder(R.drawable.loading)
