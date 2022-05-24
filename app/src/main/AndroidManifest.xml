@@ -17,6 +17,12 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".activity.book.DetailCartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.book.CartActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.book.DetailBookActivity"
             android:exported="false" />
         <activity

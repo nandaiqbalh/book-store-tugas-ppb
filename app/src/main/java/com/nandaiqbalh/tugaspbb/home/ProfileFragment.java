@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nandaiqbalh.tugaspbb.R;
+import com.nandaiqbalh.tugaspbb.activity.book.CartActivity;
 import com.nandaiqbalh.tugaspbb.activity.userprofile.ChangeProfileActivity;
 import com.nandaiqbalh.tugaspbb.auth.SignInActivity;
 import com.nandaiqbalh.tugaspbb.helper.SharedPrefs;
@@ -71,7 +72,7 @@ public class ProfileFragment extends Fragment {
     SharedPrefs sharedPrefs;
     Button logoutButton, btnChangeProfile;
 
-    ImageButton ibInfo;
+    ImageButton ibInfo, ibCart;
 
     TextView tvName, tvEmail, tvPhone, tvAddress;
 
@@ -103,6 +104,7 @@ public class ProfileFragment extends Fragment {
         sharedPrefs = new SharedPrefs(getActivity());
 
         ibInfo = (ImageButton) view.findViewById(R.id.ib_info);
+        ibCart = (ImageButton) view.findViewById(R.id.ib_cart);
 
         btnChangeProfile = (Button) view.findViewById(R.id.btn_change_profile);
 
@@ -191,6 +193,16 @@ public class ProfileFragment extends Fragment {
     }
 
     private void mainButton(View view){
+
+        ibCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CartActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

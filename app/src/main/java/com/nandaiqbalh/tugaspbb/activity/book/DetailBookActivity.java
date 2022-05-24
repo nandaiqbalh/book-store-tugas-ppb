@@ -3,13 +3,18 @@ package com.nandaiqbalh.tugaspbb.activity.book;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nandaiqbalh.tugaspbb.R;
+import com.nandaiqbalh.tugaspbb.helper.DatabaseHelper;
 import com.nandaiqbalh.tugaspbb.model.Book;
 import com.squareup.picasso.Picasso;
 
@@ -29,6 +34,9 @@ public class DetailBookActivity extends AppCompatActivity {
     // Toolbar
     Toolbar toolbar;
 
+    DatabaseHelper databaseHelper;
+    ImageView btnAddToCart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +51,8 @@ public class DetailBookActivity extends AppCompatActivity {
         // get info produk
         getInformasiProduk();
 
+        // button triggered
+        mainButton();
 
     }
 
@@ -58,12 +68,50 @@ public class DetailBookActivity extends AppCompatActivity {
 
         // toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        databaseHelper = new DatabaseHelper(this);
+        btnAddToCart = (ImageView) findViewById(R.id.btn_add_to_cart_detail);
+
+    }
+
+    private void mainButton(){
+
+        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // ambil
+                ambilIntent();
+
+                if (book != null){
+
+                    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+                    db.execSQL("insert into cart(judulbuku, hargabuku, authorbuku, kodebuku, qtybuku, halamanbuku, bahasabuku, gambarbuku) values('" +
+                            book.getBook_name() + "','" +
+                            book.getSelling_price() + "','" +
+                            book.getBook_author() + "','" +
+                            book.getBook_code() + "','" +
+                            book.getBook_quantity() + "','" +
+                            book.getBook_page() + "','" +
+                            book.getBook_language() + "','" +
+                            book.getBook_image()  +"')");
+
+                    Toast.makeText(getApplicationContext(), "Add to chart successfully!", Toast.LENGTH_LONG).show();
+//                    CartActivity.cartActivity.RefreshList();
+                }
+            }
+        });
+
+    }
+
+    private void ambilIntent(){
+        String dataBuku = getIntent().getStringExtra("extra"); // ambil value dari intent
+        book = gson.fromJson(dataBuku, Book.class); // cast dari bentuk String ke bentuk Object Produk
     }
 
     private void getInformasiProduk(){
 
-        String dataBuku = getIntent().getStringExtra("extra"); // ambil value dari intent
-        book = gson.fromJson(dataBuku, Book.class); // cast dari bentuk String ke bentuk Object Produk
+        ambilIntent();
 
         // set value
         if (book != null){
