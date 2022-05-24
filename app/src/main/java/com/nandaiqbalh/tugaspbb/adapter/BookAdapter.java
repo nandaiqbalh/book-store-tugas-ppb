@@ -1,5 +1,6 @@
 package com.nandaiqbalh.tugaspbb.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.nandaiqbalh.tugaspbb.R;
 import com.nandaiqbalh.tugaspbb.activity.book.DetailBookActivity;
 import com.nandaiqbalh.tugaspbb.model.Book;
@@ -25,6 +27,10 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.myViewHolder> 
 
     Activity activity;
     ArrayList<Book> dataHolder;
+
+    // putString
+    Gson gson = new Gson();
+    Book book;
 
     public BookAdapter(Activity activity, ArrayList<Book> dataHolder) {
         this.activity = activity;
@@ -40,7 +46,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.myViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull myViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.judulBuku.setText(dataHolder.get(position).getBook_name());
         holder.penulisBuku.setText(dataHolder.get(position).getBook_author());
@@ -57,6 +63,10 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.myViewHolder> 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity, DetailBookActivity.class);
+
+                String stringData = gson.toJson(dataHolder.get(position), Book.class); // cast data Buku ke dalam string
+                intent.putExtra("extra", stringData);
+
                 activity.startActivity(intent);
             }
         });
