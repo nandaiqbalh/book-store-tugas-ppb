@@ -9,6 +9,7 @@
         <entry key="..\:/Coding/Android Programming/TugasPBB/app/src/main/res/layout/activity_about.xml" value="0.27032661570535094" />
         <entry key="..\:/Coding/Android Programming/TugasPBB/app/src/main/res/layout/activity_bottom_nav.xml" value="0.1" />
         <entry key="..\:/Coding/Android Programming/TugasPBB/app/src/main/res/layout/activity_change_profile.xml" value="0.25" />
+        <entry key="..\:/Coding/Android Programming/TugasPBB/app/src/main/res/layout/activity_detail_book.xml" value="0.18" />
         <entry key="..\:/Coding/Android Programming/TugasPBB/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/Coding/Android Programming/TugasPBB/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Coding/Android Programming/TugasPBB/app/src/main/res/layout/activity_on_boarding_one.xml" value="0.22" />
@@ -20,6 +21,7 @@
         <entry key="..\:/Coding/Android Programming/TugasPBB/app/src/main/res/layout/fragment_history.xml" value="0.13360507246376813" />
         <entry key="..\:/Coding/Android Programming/TugasPBB/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/Coding/Android Programming/TugasPBB/app/src/main/res/layout/item_book_home.xml" value="0.33" />
+        <entry key="..\:/Coding/Android Programming/TugasPBB/app/src/main/res/layout/toolbar.xml" value="0.10461956521739131" />
         <entry key="..\:/Coding/Android Programming/TugasPBB/app/src/main/res/xml/network_security_config.xml" value="0.10461956521739131" />
       </map>
     </option>

@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".activity.book.DetailBookActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.userprofile.ChangeProfileActivity"
             android:exported="false" />
         <activity
@@ -24,10 +27,10 @@
             android:exported="false" />
         <activity
             android:name=".auth.SignUpActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".auth.SignInActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".onboarding.OnBoardingThree"
             android:exported="false" />

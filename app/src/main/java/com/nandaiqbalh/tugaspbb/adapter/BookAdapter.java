@@ -1,6 +1,7 @@
 package com.nandaiqbalh.tugaspbb.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nandaiqbalh.tugaspbb.R;
+import com.nandaiqbalh.tugaspbb.activity.book.DetailBookActivity;
 import com.nandaiqbalh.tugaspbb.model.Book;
 import com.squareup.picasso.Picasso;
 
@@ -49,6 +52,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.myViewHolder> 
                 .placeholder(R.drawable.loading)
                 .error(R.drawable.loading)
                 .into(holder.gambarBuku);
+
+        holder.layoutBuku.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, DetailBookActivity.class);
+                activity.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -60,6 +71,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.myViewHolder> 
 
         ImageView gambarBuku;
         TextView judulBuku, penulisBuku, hargaBuku;
+        CardView layoutBuku;
 
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +80,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.myViewHolder> 
             penulisBuku = itemView.findViewById(R.id.tv_penulis_buku);
             hargaBuku = itemView.findViewById(R.id.tv_harga_buku);
 
+            layoutBuku = itemView.findViewById(R.id.cv_layout_book);
         }
     }
 }
