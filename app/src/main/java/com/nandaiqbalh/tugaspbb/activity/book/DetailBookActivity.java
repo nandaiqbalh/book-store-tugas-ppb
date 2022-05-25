@@ -14,12 +14,21 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nandaiqbalh.tugaspbb.R;
+import com.nandaiqbalh.tugaspbb.activity.userprofile.ChangeProfileActivity;
 import com.nandaiqbalh.tugaspbb.helper.DatabaseHelper;
+import com.nandaiqbalh.tugaspbb.helper.SharedPrefs;
 import com.nandaiqbalh.tugaspbb.model.Book;
+import com.nandaiqbalh.tugaspbb.rest.ApiConfig;
+import com.nandaiqbalh.tugaspbb.utils.userprofile.UserProfileRequest;
+import com.nandaiqbalh.tugaspbb.utils.userprofile.UserProfileResponse;
 import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DetailBookActivity extends AppCompatActivity {
 
@@ -36,6 +45,11 @@ public class DetailBookActivity extends AppCompatActivity {
 
     DatabaseHelper databaseHelper;
     ImageView btnAddToCart;
+
+    SharedPrefs sharedPrefs;
+
+    UserProfileRequest userProfileRequest;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +68,10 @@ public class DetailBookActivity extends AppCompatActivity {
         // button triggered
         mainButton();
 
+        // get user profile
+        userProfileRequest.setId(sharedPrefs.getInt(sharedPrefs.getId()));
+        getUserProfile(userProfileRequest);
+
     }
 
     private void inisialisasi(){
@@ -71,6 +89,11 @@ public class DetailBookActivity extends AppCompatActivity {
 
         databaseHelper = new DatabaseHelper(this);
         btnAddToCart = (ImageView) findViewById(R.id.btn_add_to_cart_detail);
+
+        sharedPrefs = new SharedPrefs(this);
+
+        userProfileRequest = new UserProfileRequest();
+
 
     }
 
@@ -146,4 +169,50 @@ public class DetailBookActivity extends AppCompatActivity {
         onBackPressed();
         return super.onSupportNavigateUp();
     }
+
+    private void getUserProfile(UserProfileRequest userProfileRequest){
+
+        if (sharedPrefs.getStatusLogin() == true){
+
+            // do some networking
+            Call<UserProfileResponse> userProfileResponseCall = ApiConfig.getService().getProfile(userProfileRequest);
+            userProfileResponseCall.enqueue(new Callback<UserProfileResponse>() {
+
+                @Override
+                public void onResponse(Call<UserProfileResponse> call, Response<UserProfileResponse> response) {
+
+                    if (response.isSuccessful()) {
+
+                        UserProfileResponse respon = response.body();
+
+                        // ambil user untuk menampilkan data user terbaru ke dalam interface
+                        sharedPrefs.setUserUpdated(respon.getUser()); // manggil kembalian field user secara langsung
+
+                        if ( respon.getSuccess() == 1) {
+
+                        } else {
+                            // gagal
+
+                        }
+
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<UserProfileResponse> call, Throwable t) {
+
+                    String message = t.getLocalizedMessage();
+                    Toast.makeText(DetailBookActivity.this, message, Toast.LENGTH_LONG).show();
+                }
+
+
+            });
+
+        } else {
+            // yaudah gabisa checkout nanti
+        }
+    }
+
+
 }
