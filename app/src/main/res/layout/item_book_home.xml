@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cv_layout_book"
     android:layout_width="140dp"
-    android:layout_height="wrap_content"
+    android:layout_height="215dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
     app:cardElevation="8dp"
@@ -10,7 +10,7 @@
     android:layout_marginLeft="12dp"
     android:layout_marginVertical="3dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -21,7 +21,7 @@
             android:layout_height="110dp"
             android:layout_gravity="center"
             android:src="@drawable/loading"
-            />
+            android:layout_centerHorizontal="true"/>
 
         <TextView
             android:layout_marginHorizontal="5dp"
@@ -33,27 +33,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Judul Buku"
+            android:layout_below="@id/img_gambar_buku"
             android:textSize="12sp"
             android:fontFamily="@font/poppins_bold"
             android:textColor="@color/neutral_dark"/>
 
         <TextView
-            android:layout_marginHorizontal="5dp"
             android:id="@+id/tv_penulis_buku"
-            android:maxLines="2"
-            android:ellipsize="marquee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nama Penulis"
-            android:textSize="10dp"
+            android:layout_below="@+id/tv_judul_buku"
+            android:layout_marginHorizontal="5dp"
+            android:ellipsize="marquee"
             android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/neutral_dark"/>
+            android:maxLines="2"
+            android:text="Nama Penulis"
+            android:textColor="@color/neutral_dark"
+            android:textSize="10dp" />
 
 
         <TextView
+            android:id="@+id/tv_harga_awal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_penulis_buku"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Rp0000"
+            android:textColor="@color/neutral_grey"
+            android:textSize="10dp" />
+
+        <TextView
+            android:layout_below="@+id/tv_penulis_buku"
             android:textColor="@color/dark_blue"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="18dp"
             android:textSize="12sp"
             android:layout_marginHorizontal="5dp"
             android:id="@+id/tv_harga_buku"
@@ -63,5 +78,21 @@
             android:fontFamily="@font/poppins_bold"
             />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/tv_diskon_buku"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/rounded_corner"
+            android:fontFamily="@font/poppins_bold"
+            android:paddingTop="12dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentRight="true"
+            android:text="x%"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>
