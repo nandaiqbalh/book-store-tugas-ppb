@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        String sql = "create table cart(judulbuku text null, hargabuku text null, authorbuku text null, kodebuku text null, qtybuku text null, halamanbuku text null, bahasabuku text null, gambarbuku text null);";
+        String sql = "create table cart(judulbuku text null, hargabuku text null, diskonbuku text null, authorbuku text null, kodebuku text null, qtybuku text null, halamanbuku text null, bahasabuku text null, gambarbuku text null);";
         Log.d("DATA: ", "onCreate: " + sql);
         db.execSQL(sql);
 

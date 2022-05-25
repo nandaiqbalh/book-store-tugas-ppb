@@ -113,11 +113,11 @@ public class DetailBookActivity extends AppCompatActivity {
                 ambilIntent();
 
                 if (book != null){
-
                     SQLiteDatabase db = databaseHelper.getWritableDatabase();
-                    db.execSQL("insert into cart(judulbuku, hargabuku, authorbuku, kodebuku, qtybuku, halamanbuku, bahasabuku, gambarbuku) values('" +
+                    db.execSQL("insert into cart(judulbuku, hargabuku, diskonbuku, authorbuku, kodebuku, qtybuku, halamanbuku, bahasabuku, gambarbuku) values('" +
                             book.getBook_name() + "','" +
                             book.getSelling_price() + "','" +
+                            book.getDiscount_price() + "','" +
                             book.getBook_author() + "','" +
                             book.getBook_code() + "','" +
                             book.getBook_quantity() + "','" +
