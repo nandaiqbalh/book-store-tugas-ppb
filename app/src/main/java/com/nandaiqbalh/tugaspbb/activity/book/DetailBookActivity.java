@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -35,6 +36,8 @@ public class DetailBookActivity extends AppCompatActivity {
 
     ImageView ivGambarBuku;
     TextView tvJudulBuku, tvHargaBuku, tvAuthorBuku, tvKodeBuku, tvQuantityBuku, tvPageBuku, tvBahasaBuku;
+    TextView tvHargaAwalDetail;
+    TextView tvDiskonBuku;
 
     // intent getExtra
     Gson gson = new Gson();
@@ -77,12 +80,15 @@ public class DetailBookActivity extends AppCompatActivity {
     private void inisialisasi(){
         ivGambarBuku = (ImageView) findViewById(R.id.iv_gambar_buku_detail);
         tvJudulBuku = (TextView) findViewById(R.id.tv_judul_buku_detail);
-        tvHargaBuku = (TextView) findViewById(R.id.tv_harga_book_detail);
+        tvHargaBuku = (TextView) findViewById(R.id.tv_harga_buku_detail);
         tvAuthorBuku = (TextView) findViewById(R.id.tv_book_author_detail);
         tvKodeBuku = (TextView) findViewById(R.id.tv_book_code_detail);
         tvQuantityBuku = (TextView) findViewById(R.id.tv_book_quantity_detail);
         tvPageBuku = (TextView) findViewById(R.id.tv_book_page_detail);
         tvBahasaBuku = (TextView) findViewById(R.id.tv_book_language_detail);
+
+        tvDiskonBuku = (TextView) findViewById(R.id.tv_diskon_buku_detail);
+        tvHargaAwalDetail = (TextView) findViewById(R.id.tv_harga_awal_detail);
 
         // toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -145,6 +151,47 @@ public class DetailBookActivity extends AppCompatActivity {
             tvQuantityBuku.setText(book.getBook_quantity());
             tvPageBuku.setText(book.getBook_page());
             tvBahasaBuku.setText(book.getBook_language());
+
+            // diskon amount
+            if (book.getDiscount_price().equalsIgnoreCase("0")) {
+                tvDiskonBuku.setVisibility(View.GONE);
+
+                // harga dicoret
+                tvHargaAwalDetail.setVisibility(View.GONE);
+                tvHargaBuku.setText(NumberFormat.getCurrencyInstance(new Locale("in", "ID")).format(Integer.valueOf(book.getSelling_price())));
+
+            } else {
+                double diskonPrize, sellingPrize, diskonFinal;
+
+                try {
+                    diskonPrize = Double.parseDouble(book.getDiscount_price());
+                } catch (NumberFormatException e) {
+                    diskonPrize = 0;
+                }
+
+                try {
+                    sellingPrize = Double.parseDouble(book.getSelling_price());
+                } catch (NumberFormatException e) {
+                    sellingPrize = 0;
+                }
+
+
+                diskonFinal = diskonPrize / sellingPrize * 100;
+                int angkaSignifikan = 1;
+                double tempDiskon = Math.pow(10, angkaSignifikan);
+                double diskonTampil = (double) Math.round(diskonFinal*tempDiskon)/tempDiskon;
+
+                tvDiskonBuku.setText(diskonTampil + "%");
+
+                // harga dicoret
+                tvHargaAwalDetail.setText(NumberFormat.getCurrencyInstance(new Locale("in", "ID")).format(Integer.valueOf(book.getSelling_price())));
+                tvHargaAwalDetail.setPaintFlags(tvHargaAwalDetail.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                double hargaTampil = sellingPrize - diskonPrize;
+                // harga setelah diskon yang tampil
+                tvHargaBuku.setText(NumberFormat.getCurrencyInstance(new Locale("in", "ID")).format(Double.valueOf(hargaTampil)));
+
+            }
 
             // Gambar
             int imageURL =  book.getBook_image();
