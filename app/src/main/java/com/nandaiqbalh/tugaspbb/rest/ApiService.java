@@ -1,6 +1,8 @@
 package com.nandaiqbalh.tugaspbb.rest;
 
 import com.nandaiqbalh.tugaspbb.utils.book.BookResponse;
+import com.nandaiqbalh.tugaspbb.utils.checkout.CheckoutRequest;
+import com.nandaiqbalh.tugaspbb.utils.checkout.CheckoutResponse;
 import com.nandaiqbalh.tugaspbb.utils.login.LoginRequest;
 import com.nandaiqbalh.tugaspbb.utils.login.LoginResponse;
 import com.nandaiqbalh.tugaspbb.utils.register.RegisterRequest;
@@ -28,4 +30,8 @@ public interface ApiService {
 
     @GET("book/get-featured")
     Call<BookResponse> latestBooks();
+
+    @POST("checkout-book")
+    Call<CheckoutResponse> checkoutBook(@Body CheckoutRequest checkoutRequest);
+
 }

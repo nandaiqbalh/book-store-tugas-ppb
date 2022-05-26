@@ -14,13 +14,13 @@
         android:fontFamily="@font/poppins_bold"
         android:textColor="@color/primary_red"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_save_profile"
+        app:layout_constraintBottom_toTopOf="@+id/btn_checkout_now"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_address_checkout" />
 
     <Button
-        android:id="@+id/btn_save_profile"
+        android:id="@+id/btn_checkout_now"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"

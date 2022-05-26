@@ -1,5 +1,6 @@
 package com.nandaiqbalh.tugaspbb.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,8 +12,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.nandaiqbalh.tugaspbb.R;
+import com.nandaiqbalh.tugaspbb.activity.book.CartActivity;
 import com.nandaiqbalh.tugaspbb.adapter.BookAdapter;
 import com.nandaiqbalh.tugaspbb.adapter.SliderAdapter;
 import com.nandaiqbalh.tugaspbb.model.Book;
@@ -80,6 +83,8 @@ public class DashboardFragment extends Fragment {
     RecyclerView rvLatestBook;
     ArrayList<Book> dataHolder;
 
+    ImageButton btnCart;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -87,6 +92,8 @@ public class DashboardFragment extends Fragment {
 
         // init
         inisialisasi(view);
+
+        mainButton();
 
         // slider
         vpSlider.setAdapter(sliderAdapter);
@@ -109,6 +116,19 @@ public class DashboardFragment extends Fragment {
 
         rvLatestBook = (RecyclerView) view.findViewById(R.id.rv_latest_book);
 
+        btnCart = (ImageButton) view.findViewById(R.id.ib_cart_dashboard);
+
+    }
+
+    private void mainButton(){
+
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CartActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     // data offline

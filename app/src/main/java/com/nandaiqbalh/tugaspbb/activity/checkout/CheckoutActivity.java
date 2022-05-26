@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nandaiqbalh.tugaspbb.R;
@@ -21,10 +24,18 @@ import com.nandaiqbalh.tugaspbb.helper.SharedPrefs;
 import com.nandaiqbalh.tugaspbb.home.HomeActivity;
 import com.nandaiqbalh.tugaspbb.model.Book;
 import com.nandaiqbalh.tugaspbb.model.User;
+import com.nandaiqbalh.tugaspbb.rest.ApiConfig;
+import com.nandaiqbalh.tugaspbb.utils.checkout.CheckoutRequest;
+import com.nandaiqbalh.tugaspbb.utils.checkout.CheckoutResponse;
 import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.regex.Pattern;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CheckoutActivity extends AppCompatActivity {
 
@@ -33,9 +44,12 @@ public class CheckoutActivity extends AppCompatActivity {
     // shipping address
     EditText edtNameCheckout, edtEmailCheckout, edtPhoneCheckout, edtAddressCheckout;
 
+    // button
+    Button btnCheckoutNow;
+
     // buku
     ImageView imgBukuCheckout;
-    TextView tvDiskonBukuCheckout, tvJudulBuku, tvPenulisBuku, tvHargaAwal, tvHargaBuku;
+    TextView tvDiskonBukuCheckout, tvJudulBuku, tvPenulisBuku, tvHargaAwal, tvHargaBuku, tvErrorCheckout;
 
     // shared preferences
     SharedPrefs sharedPrefs;
@@ -46,6 +60,10 @@ public class CheckoutActivity extends AppCompatActivity {
     // intent getExtra
     Gson gson = new Gson();
     Book book;
+
+    // Checkout Request and Response
+    CheckoutRequest checkoutRequest;
+    CheckoutResponse checkoutResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +97,10 @@ public class CheckoutActivity extends AppCompatActivity {
         edtEmailCheckout = (EditText) findViewById(R.id.tv_email_checkout);
         edtPhoneCheckout = (EditText) findViewById(R.id.tv_phone_checkout);
         edtAddressCheckout = (EditText) findViewById(R.id.tv_address_checkout);
+        tvErrorCheckout = (TextView) findViewById(R.id.tv_errortext_checkout);
+
+        // button
+        btnCheckoutNow = (Button) findViewById(R.id.btn_checkout_now);
 
         // buku
         imgBukuCheckout = (ImageView) findViewById(R.id.img_buku_checkout);
@@ -95,6 +117,10 @@ public class CheckoutActivity extends AppCompatActivity {
         user = sharedPrefs.getUser();
         userUpdated = sharedPrefs.getUserUpdated();
 
+        // checkout request and response
+        checkoutRequest = new CheckoutRequest();
+        checkoutResponse = new CheckoutResponse();
+
     }
 
     private void mainButton(){
@@ -108,6 +134,106 @@ public class CheckoutActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnCheckoutNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // do networking for checkout
+                setValueForCheckout();
+
+                checkoutNow(checkoutRequest);
+            }
+        });
+    }
+
+    private void checkoutNow(CheckoutRequest checkoutRequest){
+
+        Call<CheckoutResponse> checkoutResponseCall = ApiConfig.getService().checkoutBook(checkoutRequest);
+        checkoutResponseCall.enqueue(new Callback<CheckoutResponse>() {
+            @Override
+            public void onResponse(Call<CheckoutResponse> call, Response<CheckoutResponse> response) {
+
+                checkoutResponse = response.body();
+
+                if (checkoutResponse.getSuccess() == 1){
+
+                    // pindah ke home activity + menampilkan toast
+                    Intent intent = new Intent(CheckoutActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "Success to checkout your book", Toast.LENGTH_LONG);
+                    finishAffinity();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<CheckoutResponse> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private void setValueForCheckout(){
+
+        // validasi form shipping address
+        validasiFormShippingAddress();
+
+        // atur value shiping address
+        if(userUpdated != null){
+            checkoutRequest.setUser_id(userUpdated.getId());
+        } else {
+            checkoutRequest.setUser_id(user.getId());
+        }
+        checkoutRequest.setUser_name(edtNameCheckout.getText().toString().trim());
+        checkoutRequest.setUser_email(edtEmailCheckout.getText().toString().trim());
+        checkoutRequest.setUser_phone(edtPhoneCheckout.getText().toString().trim());
+        checkoutRequest.setUser_address(edtAddressCheckout.getText().toString().trim());
+
+        // kirim value buku
+        checkoutRequest.setBook_image(book.getBook_image());
+        checkoutRequest.setBook_name(book.getBook_name());
+        checkoutRequest.setBook_author(book.getBook_author());
+        checkoutRequest.setBook_code(book.getBook_code());
+        checkoutRequest.setBook_page(book.getBook_page());
+        checkoutRequest.setBook_language(book.getBook_language());
+        checkoutRequest.setSelling_price(book.getSelling_price());
+        checkoutRequest.setDiscount_price(book.getDiscount_price());
+
+    }
+
+    private void validasiFormShippingAddress(){
+
+        String emailInput = edtEmailCheckout.getText().toString().trim(); // untuk validasi email
+        int phoneInput = edtPhoneCheckout.getText().length(); // untuk validasi nomor telepon
+
+        if (edtNameCheckout.getText().toString().isEmpty()) {
+            tvErrorCheckout.setText("Name field is required!");
+            edtNameCheckout.requestFocus();
+            return;
+        } else if (emailInput.isEmpty()) {
+            tvErrorCheckout.setText("Email field is required!");
+            edtEmailCheckout.requestFocus();
+            return;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+            tvErrorCheckout.setText("The email address you entered is not valid!");
+            edtEmailCheckout.requestFocus();
+            return;
+        } else if (edtPhoneCheckout.getText().toString().isEmpty()) {
+            tvErrorCheckout.setText("Phone number field is required!");
+            edtPhoneCheckout.requestFocus();
+            return;
+        } else if (phoneInput < 10 || phoneInput > 13) {
+            tvErrorCheckout.setText("The phone number you entered is not valid!");
+            edtPhoneCheckout.requestFocus();
+            return;
+        } else if (edtAddressCheckout.getText().toString().isEmpty()){
+            tvErrorCheckout.setText("Address field is required!");
+            edtAddressCheckout.requestFocus();
+            return;
+        }
     }
 
     private void setValueShippingAddress(){
