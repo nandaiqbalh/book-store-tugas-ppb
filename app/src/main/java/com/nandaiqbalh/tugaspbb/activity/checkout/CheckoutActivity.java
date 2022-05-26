@@ -143,8 +143,15 @@ public class CheckoutActivity extends AppCompatActivity {
 
                 if (validasiFormShippingAddress() == true){
                     setValueForCheckout();
-
                     checkoutNow(checkoutRequest);
+
+                    // pindah ke home activity + menampilkan toast
+                    Toast.makeText(CheckoutActivity.this, "Success to checkout your book!", Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(CheckoutActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finishAffinity();
+
                 }
 
             }
@@ -160,16 +167,6 @@ public class CheckoutActivity extends AppCompatActivity {
 
                 checkoutResponse = response.body();
 
-                if (checkoutResponse.getSuccess() == 1){
-
-                    // pindah ke home activity + menampilkan toast
-                    Toast.makeText(CheckoutActivity.this, "Success to checkout your book", Toast.LENGTH_LONG).show();
-
-                    Intent intent = new Intent(CheckoutActivity.this, HomeActivity.class);
-                    startActivity(intent);
-                    finishAffinity();
-
-                }
 
             }
 
@@ -183,7 +180,6 @@ public class CheckoutActivity extends AppCompatActivity {
 
     private void setValueForCheckout(){
 
-        // validasi form shipping address
         validasiFormShippingAddress();
 
         // atur value shiping address

@@ -1,14 +1,29 @@
 package com.nandaiqbalh.tugaspbb.home;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.nandaiqbalh.tugaspbb.R;
+import com.nandaiqbalh.tugaspbb.adapter.HistoryAdapter;
+import com.nandaiqbalh.tugaspbb.helper.SharedPrefs;
+import com.nandaiqbalh.tugaspbb.model.Transaction;
+import com.nandaiqbalh.tugaspbb.rest.ApiConfig;
+import com.nandaiqbalh.tugaspbb.utils.checkout.CheckoutRequest;
+import com.nandaiqbalh.tugaspbb.utils.checkout.CheckoutResponse;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,10 +72,70 @@ public class HistoryFragment extends Fragment {
         }
     }
 
+    RecyclerView rvHistoryCheckout;
+
+    SharedPrefs sharedPrefs;
+
+    CheckoutRequest checkoutRequest;
+    CheckoutResponse checkoutResponse;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history, container, false);
+        View view = inflater.inflate(R.layout.fragment_history, container, false);
+
+        // init
+        inisialisasi(view);
+
+        if (sharedPrefs.getStatusLogin()) {
+
+            checkoutRequest.setUser_id(sharedPrefs.getUser().getId());
+            getCheckoutHistory(checkoutRequest);
+        }
+
+        return view;
+
+    }
+
+    private void inisialisasi(View view) {
+        rvHistoryCheckout = (RecyclerView) view.findViewById(R.id.rv_history_transaction);
+
+        sharedPrefs = new SharedPrefs(getActivity());
+
+        checkoutRequest = new CheckoutRequest();
+        checkoutResponse = new CheckoutResponse();
+    }
+
+    private ArrayList<Transaction> checkoutHistoryArrayList = new ArrayList<>();
+
+    private void getCheckoutHistory(CheckoutRequest checkoutRequest) {
+        Call<CheckoutResponse> checkoutHistory = ApiConfig.getService().checkoutHistory(checkoutRequest);
+        checkoutHistory.enqueue(new Callback<CheckoutResponse>() {
+            @Override
+            public void onResponse(Call<CheckoutResponse> call, Response<CheckoutResponse> response) {
+
+                checkoutResponse = response.body();
+
+                if (checkoutResponse.getSuccess() == 1) {
+                    checkoutHistoryArrayList = checkoutResponse.getTransaction();
+                    displayBook();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<CheckoutResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void displayBook() {
+
+        LinearLayoutManager historyCheckouLinearLayoutManager = new LinearLayoutManager(getActivity());
+        historyCheckouLinearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        rvHistoryCheckout.setLayoutManager(historyCheckouLinearLayoutManager);
+        rvHistoryCheckout.setAdapter(new HistoryAdapter(requireActivity(), checkoutHistoryArrayList));
     }
 }

@@ -13,6 +13,7 @@
     tools:context="com.nandaiqbalh.tugaspbb.activity.book.CartActivity"
     >
 
+
     <RelativeLayout
         android:id="@+id/btn_back_form_cart"
         android:layout_width="wrap_content"
@@ -38,13 +39,30 @@
             android:textSize="20sp" />
     </RelativeLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/line_full"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/title_transaction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Your carts"
+        android:textColor="@color/font_nama"
+        android:layout_marginTop="16dp"
+        android:textSize="12sp"
+        />
+
     <ListView
         android:id="@+id/cartListview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp">
 
     </ListView>

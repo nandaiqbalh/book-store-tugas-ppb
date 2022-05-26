@@ -34,4 +34,7 @@ public interface ApiService {
     @POST("checkout-book")
     Call<CheckoutResponse> checkoutBook(@Body CheckoutRequest checkoutRequest);
 
+    @POST("checkout-history")
+    Call<CheckoutResponse> checkoutHistory(@Body CheckoutRequest checkoutRequest);
+
 }
