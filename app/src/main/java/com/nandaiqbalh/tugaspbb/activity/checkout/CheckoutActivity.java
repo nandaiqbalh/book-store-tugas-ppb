@@ -20,7 +20,6 @@ import com.nandaiqbalh.tugaspbb.R;
 import com.nandaiqbalh.tugaspbb.activity.book.DetailBookActivity;
 import com.nandaiqbalh.tugaspbb.activity.userprofile.ChangeProfileActivity;
 import com.nandaiqbalh.tugaspbb.auth.SignInActivity;
-import com.nandaiqbalh.tugaspbb.auth.SignUpActivity;
 import com.nandaiqbalh.tugaspbb.helper.SharedPrefs;
 import com.nandaiqbalh.tugaspbb.home.HomeActivity;
 import com.nandaiqbalh.tugaspbb.model.Book;
@@ -141,9 +140,13 @@ public class CheckoutActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 // do networking for checkout
-                setValueForCheckout();
 
-                checkoutNow(checkoutRequest);
+                if (validasiFormShippingAddress() == true){
+                    setValueForCheckout();
+
+                    checkoutNow(checkoutRequest);
+                }
+
             }
         });
     }
@@ -160,7 +163,7 @@ public class CheckoutActivity extends AppCompatActivity {
                 if (checkoutResponse.getSuccess() == 1){
 
                     // pindah ke home activity + menampilkan toast
-                    Toast.makeText(CheckoutActivity.this, "Successfully to checkout your book! ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CheckoutActivity.this, "Success to checkout your book", Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(CheckoutActivity.this, HomeActivity.class);
                     startActivity(intent);
@@ -206,7 +209,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
     }
 
-    private void validasiFormShippingAddress(){
+    private boolean validasiFormShippingAddress(){
 
         String emailInput = edtEmailCheckout.getText().toString().trim(); // untuk validasi email
         int phoneInput = edtPhoneCheckout.getText().length(); // untuk validasi nomor telepon
@@ -214,28 +217,31 @@ public class CheckoutActivity extends AppCompatActivity {
         if (edtNameCheckout.getText().toString().isEmpty()) {
             tvErrorCheckout.setText("Name field is required!");
             edtNameCheckout.requestFocus();
-            return;
+            return false;
         } else if (emailInput.isEmpty()) {
             tvErrorCheckout.setText("Email field is required!");
             edtEmailCheckout.requestFocus();
-            return;
+            return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
             tvErrorCheckout.setText("The email address you entered is not valid!");
             edtEmailCheckout.requestFocus();
-            return;
+            return false;
         } else if (edtPhoneCheckout.getText().toString().isEmpty()) {
             tvErrorCheckout.setText("Phone number field is required!");
             edtPhoneCheckout.requestFocus();
-            return;
+            return false;
         } else if (phoneInput < 10 || phoneInput > 13) {
             tvErrorCheckout.setText("The phone number you entered is not valid!");
             edtPhoneCheckout.requestFocus();
-            return;
+            return false;
         } else if (edtAddressCheckout.getText().toString().isEmpty()){
             tvErrorCheckout.setText("Address field is required!");
             edtAddressCheckout.requestFocus();
-            return;
+            return false;
         }
+
+        return true;
+
     }
 
     private void setValueShippingAddress(){
