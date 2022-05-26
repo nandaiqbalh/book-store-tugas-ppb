@@ -65,11 +65,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <ImageView
-            android:id="@+id/img_buku_checkout"
+        <RelativeLayout
             android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:src="@drawable/loading"/>
+            android:layout_height="110dp">
+
+            <ImageView
+                android:id="@+id/img_buku_checkout"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_gravity="center"
+                android:src="@drawable/loading"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/tv_diskon_buku_checkout"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/rounded_corner"
+                android:fontFamily="@font/poppins_bold"
+                android:paddingTop="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentRight="true"
+                android:text="x%"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="10sp" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -178,7 +201,7 @@
         android:fontFamily="@font/poppins_medium"
         android:hint="Your Name Here"
         android:textColor="@color/font_nama"
-        android:textSize="16sp"
+        android:textSize="12sp"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -210,7 +233,7 @@
         android:fontFamily="@font/poppins_medium"
         android:hint="Your Email Here"
         android:textColor="@color/font_nama"
-        android:textSize="16sp"
+        android:textSize="12sp"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -242,7 +265,7 @@
         android:fontFamily="@font/poppins_medium"
         android:hint="Your Phone Here"
         android:textColor="@color/font_nama"
-        android:textSize="16sp"
+        android:textSize="12sp"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -276,7 +299,7 @@
         android:fontFamily="@font/poppins_medium"
         android:hint="Your Address Here"
         android:textColor="@color/font_nama"
-        android:textSize="16sp"
+        android:textSize="12sp"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

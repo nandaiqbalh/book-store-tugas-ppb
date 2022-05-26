@@ -13,10 +13,8 @@ public class CheckoutRequest {
     private String book_quantity;
     private String book_page;
     private String book_language;
-    private String total_qty;
     private String selling_price;
     private String discount_price;
-    private String total_price;
 
 
     public int getUser_id() {
@@ -107,13 +105,6 @@ public class CheckoutRequest {
         this.book_language = book_language;
     }
 
-    public String getTotal_qty() {
-        return total_qty;
-    }
-
-    public void setTotal_qty(String total_qty) {
-        this.total_qty = total_qty;
-    }
 
     public String getSelling_price() {
         return selling_price;
@@ -131,11 +122,4 @@ public class CheckoutRequest {
         this.discount_price = discount_price;
     }
 
-    public String getTotal_price() {
-        return total_price;
-    }
-
-    public void setTotal_price(String total_price) {
-        this.total_price = total_price;
-    }
 }
