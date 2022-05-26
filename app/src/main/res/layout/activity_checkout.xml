@@ -73,9 +73,9 @@
                 android:id="@+id/img_buku_checkout"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
+                android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
-                android:src="@drawable/loading"
-                android:layout_centerHorizontal="true"/>
+                android:src="@drawable/loading" />
 
             <TextView
                 android:id="@+id/tv_diskon_buku_checkout"

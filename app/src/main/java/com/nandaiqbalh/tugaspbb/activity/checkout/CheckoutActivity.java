@@ -20,6 +20,7 @@ import com.nandaiqbalh.tugaspbb.R;
 import com.nandaiqbalh.tugaspbb.activity.book.DetailBookActivity;
 import com.nandaiqbalh.tugaspbb.activity.userprofile.ChangeProfileActivity;
 import com.nandaiqbalh.tugaspbb.auth.SignInActivity;
+import com.nandaiqbalh.tugaspbb.auth.SignUpActivity;
 import com.nandaiqbalh.tugaspbb.helper.SharedPrefs;
 import com.nandaiqbalh.tugaspbb.home.HomeActivity;
 import com.nandaiqbalh.tugaspbb.model.Book;
@@ -159,9 +160,10 @@ public class CheckoutActivity extends AppCompatActivity {
                 if (checkoutResponse.getSuccess() == 1){
 
                     // pindah ke home activity + menampilkan toast
+                    Toast.makeText(CheckoutActivity.this, "Successfully to checkout your book! ", Toast.LENGTH_LONG).show();
+
                     Intent intent = new Intent(CheckoutActivity.this, HomeActivity.class);
                     startActivity(intent);
-                    Toast.makeText(getApplicationContext(), "Success to checkout your book", Toast.LENGTH_LONG);
                     finishAffinity();
 
                 }
