@@ -149,7 +149,10 @@ public class DetailBookActivity extends AppCompatActivity {
 
                     // ke checkout form activity
                     Intent intent = new Intent(DetailBookActivity.this, CheckoutActivity.class);
+                    String stringData = gson.toJson(book, Book.class); // cast data Buku ke dalam string
+                    intent.putExtra("extra", stringData);
                     startActivity(intent);
+
 
                 } else {
 
