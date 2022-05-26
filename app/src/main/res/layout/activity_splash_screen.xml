@@ -21,7 +21,7 @@
   <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="DUA BELAS\nBOOK STORE"
+      android:text="CURIOUS MINDS\nBOOK STORE"
       android:textAlignment="center"
       android:textSize="25dp"
       android:textColor="@color/white"

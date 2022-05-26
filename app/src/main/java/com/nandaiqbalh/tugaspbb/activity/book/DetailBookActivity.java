@@ -3,6 +3,7 @@ package com.nandaiqbalh.tugaspbb.activity.book;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -15,11 +16,14 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nandaiqbalh.tugaspbb.R;
+import com.nandaiqbalh.tugaspbb.activity.checkout.CheckoutActivity;
 import com.nandaiqbalh.tugaspbb.activity.userprofile.ChangeProfileActivity;
+import com.nandaiqbalh.tugaspbb.auth.SignInActivity;
 import com.nandaiqbalh.tugaspbb.helper.DatabaseHelper;
 import com.nandaiqbalh.tugaspbb.helper.SharedPrefs;
 import com.nandaiqbalh.tugaspbb.model.Book;
 import com.nandaiqbalh.tugaspbb.rest.ApiConfig;
+import com.nandaiqbalh.tugaspbb.utils.checkout.CheckoutRequest;
 import com.nandaiqbalh.tugaspbb.utils.userprofile.UserProfileRequest;
 import com.nandaiqbalh.tugaspbb.utils.userprofile.UserProfileResponse;
 import com.squareup.picasso.Picasso;
@@ -39,6 +43,8 @@ public class DetailBookActivity extends AppCompatActivity {
     TextView tvHargaAwalDetail;
     TextView tvDiskonBuku;
 
+    Button btnCheckout;
+
     // intent getExtra
     Gson gson = new Gson();
     Book book;
@@ -52,6 +58,7 @@ public class DetailBookActivity extends AppCompatActivity {
     SharedPrefs sharedPrefs;
 
     UserProfileRequest userProfileRequest;
+    CheckoutRequest checkoutRequest;
 
 
     @Override
@@ -90,6 +97,9 @@ public class DetailBookActivity extends AppCompatActivity {
         tvDiskonBuku = (TextView) findViewById(R.id.tv_diskon_buku_detail);
         tvHargaAwalDetail = (TextView) findViewById(R.id.tv_harga_awal_detail);
 
+        // button
+        btnCheckout = (Button) findViewById(R.id.btn_checkout_detail);
+
         // toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -100,6 +110,7 @@ public class DetailBookActivity extends AppCompatActivity {
 
         userProfileRequest = new UserProfileRequest();
 
+        checkoutRequest = new CheckoutRequest();
 
     }
 
@@ -127,6 +138,26 @@ public class DetailBookActivity extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "Add to chart successfully!", Toast.LENGTH_LONG).show();
 //                    CartActivity.cartActivity.RefreshList();
+                }
+            }
+        });
+
+        btnCheckout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (sharedPrefs.getStatusLogin() == true){
+
+                    // ke checkout form activity
+                    Intent intent = new Intent(DetailBookActivity.this, CheckoutActivity.class);
+                    startActivity(intent);
+
+                } else {
+
+                    // ke login activity
+                    Intent intent = new Intent(DetailBookActivity.this, SignInActivity.class);
+                    Toast.makeText(getApplicationContext(), "You need to Sign In first!", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+
                 }
             }
         });
@@ -237,6 +268,23 @@ public class DetailBookActivity extends AppCompatActivity {
 
                         if ( respon.getSuccess() == 1) {
 
+                            checkoutRequest.setUser_id(respon.getUser().getId());
+                            checkoutRequest.setUser_email(respon.getUser().getEmail());
+                            checkoutRequest.setUser_phone(respon.getUser().getPhone());
+                            if (respon.getUser().getAddress()!= null){
+                                checkoutRequest.setUser_address(respon.getUser().getAddress());
+                            }
+                            checkoutRequest.setBook_image(book.getBook_image());
+                            checkoutRequest.setBook_name(book.getBook_name());
+                            checkoutRequest.setBook_author(book.getBook_author());
+                            checkoutRequest.setBook_code(book.getBook_code());
+                            checkoutRequest.setBook_quantity(book.getBook_quantity());
+                            checkoutRequest.setBook_language(book.getBook_language());
+                            checkoutRequest.setSelling_price(book.getSelling_price());
+                            checkoutRequest.setDiscount_price(book.getDiscount_price());
+
+                            // total qty dan total price blom di set
+
                         } else {
                             // gagal
 
@@ -260,6 +308,5 @@ public class DetailBookActivity extends AppCompatActivity {
             // yaudah gabisa checkout nanti
         }
     }
-
 
 }

@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".activity.checkout.CheckoutActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.book.DetailCartActivity"
             android:exported="false" />
         <activity
