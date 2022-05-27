@@ -80,7 +80,7 @@ public class DashboardFragment extends Fragment {
     SliderAdapter sliderAdapter;
 
     // recycler view
-    RecyclerView rvLatestBook;
+    RecyclerView rvLatestBook, rvDsicountBooks;
     ArrayList<Book> dataHolder;
 
     ImageButton btnCart;
@@ -99,6 +99,7 @@ public class DashboardFragment extends Fragment {
         vpSlider.setAdapter(sliderAdapter);
 
         setOfflineLatestBook();
+        setOfflineLDiscountBook();
 
         // latest book
 //        getLatestBook();
@@ -115,6 +116,7 @@ public class DashboardFragment extends Fragment {
         sliderAdapter = new SliderAdapter(getContext());
 
         rvLatestBook = (RecyclerView) view.findViewById(R.id.rv_latest_book);
+        rvDsicountBooks = (RecyclerView) view.findViewById(R.id.rv_discounts);
 
         btnCart = (ImageButton) view.findViewById(R.id.ib_cart_dashboard);
 
@@ -156,6 +158,31 @@ public class DashboardFragment extends Fragment {
         linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         rvLatestBook.setLayoutManager(linearLayoutManager);
         rvLatestBook.setAdapter(new BookAdapter(requireActivity(), dataHolder));
+    }
+
+    private void setOfflineLDiscountBook(){
+        // produk recycler view
+
+        rvDsicountBooks.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // MENAMBAHKAN BUKU SECARA OFFLINE DARI INTERNAL PROJECT
+        // menambahkan produk ke holder -> Featured Product
+        dataHolder = new ArrayList<>();
+        Book diskon1 = new Book("Catatan Juang", "Fiersa Besari", "FB-02", "2", "175", "Bahasa Indonesia",  "65000" , "6700", R.drawable.buku_catatan_juang);
+        dataHolder.add(diskon1);
+        Book diskon2 = new Book("Disforia Inersia", "Wira Nagara", "WN-01", "5", "166", "Bahasa Indonesia",  "75000" , "8000", R.drawable.buku_disforsia_inersia);
+        dataHolder.add(diskon2);
+        Book diskon3 = new Book("Distilasi Alkena", "Wira Nagara", "WN-02", "4", "177", "Bahasa Indonesia",  "75000" , "10000", R.drawable.buku_distilasi_alkena);
+        dataHolder.add(diskon3);
+        Book diskon4 = new Book("Atomic Habbits", "James Clear", "JC-01", "3", "244", "English",  "144000" , "10000", R.drawable.buku_atomic);
+        dataHolder.add(diskon4);
+        Book diskon5 = new Book("The Kite Runner", "Khaled Hosseini", "KH-01", "1", "400", "English",  "125000" , "8000", R.drawable.buku_thekiterunner);
+        dataHolder.add(diskon5);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        rvDsicountBooks.setLayoutManager(linearLayoutManager);
+        rvDsicountBooks.setAdapter(new BookAdapter(requireActivity(), dataHolder));
     }
 
 //     // get book with API

@@ -33,7 +33,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create an account"
+            android:text="Create an account."
             android:textColor="@color/font_nama"
             android:fontFamily="@font/poppins_regular"
             android:layout_gravity="center"

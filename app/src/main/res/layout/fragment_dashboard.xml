@@ -106,13 +106,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="Top Novels"
+                    android:text="Discount Books"
                     android:textColor="@color/neutral_dark"
                     android:textSize="14sp" />
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_top_novels"
+                    android:id="@+id/rv_discounts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>

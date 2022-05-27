@@ -26,7 +26,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="Welcome to\nDua Belas Book Store!"
+            android:text="Welcome to\nCurious Minds Book Store!"
             android:textAlignment="center"
             android:textColor="@color/font_nama"
             android:textSize="16sp" />
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/poppins_regular"
-            android:text="Sign in to continue"
+            android:text="Please, sign in to continue!"
             android:textColor="@color/font_nama"
             android:textSize="12sp" />
 
