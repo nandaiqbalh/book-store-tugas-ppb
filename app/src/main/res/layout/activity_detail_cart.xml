@@ -26,7 +26,6 @@
             android:id="@+id/scroll_view_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/btn_checkout_cart"
             android:layout_marginBottom="10dp"
             >
 
@@ -242,18 +241,6 @@
             </LinearLayout>
 
         </ScrollView>
-
-        <Button
-            android:id="@+id/btn_checkout_cart"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/shape_btn_primary"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Checkout"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
 
     </RelativeLayout>
 

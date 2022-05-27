@@ -1,8 +1,10 @@
 package com.nandaiqbalh.tugaspbb.activity.book;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
@@ -60,6 +62,8 @@ public class DetailBookActivity extends AppCompatActivity {
     UserProfileRequest userProfileRequest;
     CheckoutRequest checkoutRequest;
 
+    // alert dialog
+    AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +116,9 @@ public class DetailBookActivity extends AppCompatActivity {
 
         checkoutRequest = new CheckoutRequest();
 
+        // alert dialog
+        builder = new AlertDialog.Builder(this);
+
     }
 
     private void mainButton(){
@@ -120,25 +127,40 @@ public class DetailBookActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                // ambil
-                ambilIntent();
+                builder.setTitle("Confirmation")
+                        .setMessage("Are you sure to add this book to your cart?")
+                        .setCancelable(true)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                // ambil
+                                ambilIntent();
 
-                if (book != null){
-                    SQLiteDatabase db = databaseHelper.getWritableDatabase();
-                    db.execSQL("insert into cart(judulbuku, hargabuku, diskonbuku, authorbuku, kodebuku, qtybuku, halamanbuku, bahasabuku, gambarbuku) values('" +
-                            book.getBook_name() + "','" +
-                            book.getSelling_price() + "','" +
-                            book.getDiscount_price() + "','" +
-                            book.getBook_author() + "','" +
-                            book.getBook_code() + "','" +
-                            book.getBook_quantity() + "','" +
-                            book.getBook_page() + "','" +
-                            book.getBook_language() + "','" +
-                            book.getBook_image()  +"')");
+                                if (book != null){
+                                    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+                                    db.execSQL("insert into cart(judulbuku, hargabuku, diskonbuku, authorbuku, kodebuku, qtybuku, halamanbuku, bahasabuku, gambarbuku) values('" +
+                                            book.getBook_name() + "','" +
+                                            book.getSelling_price() + "','" +
+                                            book.getDiscount_price() + "','" +
+                                            book.getBook_author() + "','" +
+                                            book.getBook_code() + "','" +
+                                            book.getBook_quantity() + "','" +
+                                            book.getBook_page() + "','" +
+                                            book.getBook_language() + "','" +
+                                            book.getBook_image()  +"')");
 
-                    Toast.makeText(getApplicationContext(), "Add to chart successfully!", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), "Add to chart successfully!", Toast.LENGTH_LONG).show();
 //                    CartActivity.cartActivity.RefreshList();
-                }
+                                }
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        })
+                        .show();
             }
         });
 

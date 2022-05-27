@@ -1,7 +1,9 @@
 package com.nandaiqbalh.tugaspbb.activity.checkout;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -65,6 +67,10 @@ public class CheckoutActivity extends AppCompatActivity {
     CheckoutRequest checkoutRequest;
     CheckoutResponse checkoutResponse;
 
+    // alert dialog
+    AlertDialog.Builder builder;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,6 +127,9 @@ public class CheckoutActivity extends AppCompatActivity {
         checkoutRequest = new CheckoutRequest();
         checkoutResponse = new CheckoutResponse();
 
+        // alert dialog
+        builder = new AlertDialog.Builder(this);
+
     }
 
     private void mainButton(){
@@ -139,21 +148,37 @@ public class CheckoutActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                // do networking for checkout
+                // alert dialog
+                builder.setTitle("Confirmation")
+                        .setMessage("Are you sure to checkout this book?")
+                        .setCancelable(true)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
-                if (validasiFormShippingAddress() == true){
-                    setValueForCheckout();
-                    checkoutNow(checkoutRequest);
+                                // do networking for checkout
 
-                    // pindah ke home activity + menampilkan toast
-                    Toast.makeText(CheckoutActivity.this, "Success to checkout your book!", Toast.LENGTH_LONG).show();
+                                if (validasiFormShippingAddress() == true){
+                                    setValueForCheckout();
+                                    checkoutNow(checkoutRequest);
 
-                    Intent intent = new Intent(CheckoutActivity.this, HomeActivity.class);
-                    startActivity(intent);
-                    finishAffinity();
+                                    // pindah ke home activity + menampilkan toast
+                                    Toast.makeText(CheckoutActivity.this, "Success to checkout your book!", Toast.LENGTH_LONG).show();
 
-                }
+                                    Intent intent = new Intent(CheckoutActivity.this, HomeActivity.class);
+                                    startActivity(intent);
+                                    finishAffinity();
 
+                                }
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        })
+                        .show();
             }
         });
     }
