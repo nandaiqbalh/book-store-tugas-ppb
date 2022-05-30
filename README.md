@@ -23,4 +23,4 @@ SQLite: Database cart
 
 ### Backend
 - Clone https://github.com/nandaiqbalh/aksara-book-store
-- Dont forget to create the database for your project
+- Dont forget to create the database for your project.
