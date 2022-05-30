@@ -16,3 +16,11 @@ Link demo: https://youtu.be/UcIjogqXg2M
 MySQL: Database untuk data pengguna  dan data transaksi
 SQLite: Database cart 
 - Backend PHP 7.4.19 + Laravel 8: Backend API untuk integrasi MySQL dan Android App
+
+## How to clone this repository?
+### Android App
+- Simply clone this repository and wussshhh, run on your computer.
+
+### Backend
+- Clone https://github.com/nandaiqbalh/aksara-book-store
+- Dont forget to create the database for your project
