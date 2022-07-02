@@ -213,8 +213,6 @@ public class ProfileFragment extends Fragment {
 
                 Toast.makeText(getActivity(), "Sucessfully to sign you out!", Toast.LENGTH_LONG).show();
 
-                getActivity().finishAffinity();
-
             }
         });
 

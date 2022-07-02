@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -80,6 +81,7 @@ public class DetailCartActivity extends AppCompatActivity {
             tvBahasaBuku.setText(cursor.getString(7).toString());
             ivGambarBuku.setImageResource(Integer.parseInt(cursor.getString(8)));
 
+            Log.d("CEK VALUE GAMBAR", "AKU: " + cursor.getString(8));
 
             // diskon amount
             if (cursor.getString(2).equalsIgnoreCase("0")) {

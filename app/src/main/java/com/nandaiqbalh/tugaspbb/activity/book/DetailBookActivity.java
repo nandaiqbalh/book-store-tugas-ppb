@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -148,7 +149,6 @@ public class DetailBookActivity extends AppCompatActivity {
                                             book.getBook_page() + "','" +
                                             book.getBook_language() + "','" +
                                             book.getBook_image()  +"')");
-
                                     Toast.makeText(getApplicationContext(), "Add to chart successfully!", Toast.LENGTH_LONG).show();
 //                    CartActivity.cartActivity.RefreshList();
                                 }
